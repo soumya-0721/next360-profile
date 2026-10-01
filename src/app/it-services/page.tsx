@@ -175,7 +175,7 @@ export default function ItServicesPage() {
               src={photos.engineering}
               alt="Engineering workspace"
               title="Projects"
-              description="Nine proven projects and deployments, led by Next360 Organic."
+              description="Eight proven projects and deployments, led by Next360 Organic."
             />
           </Reveal>
         </div>

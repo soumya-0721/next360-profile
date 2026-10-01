@@ -115,8 +115,8 @@ export default function AboutPage() {
             <p className="mt-6 max-w-3xl text-sm leading-relaxed text-gray-500">
               Verified items today are {technologyDomains.length} technology and
               business domains, the flagship Next360 Organic Marketplace, a
-              portfolio of nine proven projects and deployments, the SLICK
-              Technologies product ecosystem, and an extended network of{" "}
+                portfolio of eight proven projects and deployments, the Slick
+                Technologies sub-company, and an extended network of{" "}
               {company.team.extended} professionals including{" "}
               {company.team.developers} developers. Everything else publishes
               only once approved against the source supplied for the profile.

@@ -177,7 +177,7 @@ export default function CapabilitiesPage() {
               src={photos.infrastructure}
               alt="Server infrastructure"
               title="Projects"
-              description="Nine proven projects and deployments."
+              description="Eight proven projects and deployments."
             />
           </Reveal>
         </div>

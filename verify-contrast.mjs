@@ -63,18 +63,24 @@ const AUDIT = `(() => {
       lin2srgb(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s),
     ];
   };
+  /*
+    CIE Lab (D50) -> sRGB. Lab's white point is D50 = (0.96422, 1, 0.82521);
+    the D65 value 1.08883 must not appear here. XYZ D50 -> XYZ D65 uses the
+    Bradford adaptation matrix; XYZ D65 -> linear sRGB is the standard matrix.
+    Verified: lab(96.1596 -0.0823438 -1.13575) -> rgb(243,244,246) = #f3f4f6.
+  */
   const labToRgb = (L, a, b) => {
     const e = 216 / 24389, k = 24389 / 27;
     const fy = (L + 16) / 116, fx = fy + a / 500, fz = fy - b / 200;
     const fi = (t) => (t * t * t > e ? t * t * t : (116 * t - 16) / k);
-    const X = fi(fx) * 0.96422, Y = (L > k * e ? Math.pow(fy, 3) : L / k), Z = fi(fz) * 1.08883;
+    const X = fi(fx) * 0.96422, Y = (L > k * e ? Math.pow(fy, 3) : L / k), Z = fi(fz) * 0.82521;
     const Xd = 0.9554734 * X - 0.0230985 * Y + 0.0632593 * Z;
-    const Yd = -0.2807956 * X + 1.007231 * Y + 0.041892 * Z;
-    const Zd = 0.0117219 * X - 0.204044 * Y + 1.056995 * Z;
+    const Yd = -0.0283697 * X + 1.0099954 * Y + 0.0210414 * Z;
+    const Zd = 0.012314 * X - 0.0205077 * Y + 1.3303659 * Z;
     return [
       lin2srgb(3.2404542 * Xd - 1.5371385 * Yd - 0.4985314 * Zd),
       lin2srgb(-0.969266 * Xd + 1.8760108 * Yd + 0.041892 * Zd),
-      lin2srgb(0.0556434 * Xd - 0.204044 * Yd + 1.056995 * Zd),
+      lin2srgb(0.0556434 * Xd - 0.204044 * Yd + 1.0572252 * Zd),
     ];
   };
   const parseSpace = (s) => {
@@ -183,8 +189,15 @@ const AUDIT = `(() => {
   };
 
   const bgOf = (el) => {
+    /*
+      Paint order matters: the element's OWN background paints last, after any
+      covering layer (the hero scrim is z-0 behind the z-10 content). The old
+      code stacked own bg first and then multiplied the scrim over it, which
+      turned the lime #ccff00 badge into rgb(82,102,0).
+    */
+    const own = parse(getComputedStyle(el).backgroundColor);
     const stack = [];
-    let n = el;
+    let n = el.parentElement;
     while (n && n !== document.documentElement) {
       const c = parse(getComputedStyle(n).backgroundColor);
       if (c && c[3] > 0) stack.push(c);
@@ -227,6 +240,14 @@ const AUDIT = `(() => {
           c[2] * c[3] + out[2] * (1 - c[3]),
         ];
       }
+    }
+    /* The element's own background paints after every covering layer. */
+    if (own && own[3] > 0) {
+      out = [
+        own[0] * own[3] + out[0] * (1 - own[3]),
+        own[1] * own[3] + out[1] * (1 - own[3]),
+        own[2] * own[3] + out[2] * (1 - own[3]),
+      ];
     }
     return out;
   };

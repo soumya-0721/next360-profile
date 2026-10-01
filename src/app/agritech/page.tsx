@@ -102,7 +102,7 @@ export default function AgritechPage() {
               src={photos.field}
               alt="Agricultural land"
               title="Selected Projects"
-              description="Nine proven projects and deployments, led by Next360 Organic."
+              description="Eight proven projects and deployments, led by Next360 Organic."
             />
           </Reveal>
           <Reveal delay={80}>

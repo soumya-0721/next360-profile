@@ -324,7 +324,7 @@ export const companySnapshot = [
   { label: "Extended Network", value: "30+ Professionals" },
   { label: "Core Developers", value: "15+" },
   { label: "Interns", value: "6+" },
-  { label: "Technology Ecosystem", value: "Slick Technologies" },
+  { label: "Sub-company", value: "Slick Technologies" },
   {
     label: "Key Collaborators",
     value: "ACS, Logiq Gen – AI Nestham, INTOWN",
@@ -359,7 +359,7 @@ export const storyHierarchy = [
   {
     level: "05",
     name: "SLICK TECHNOLOGIES",
-    note: "Next360's branded product ecosystem",
+    note: "Next360 sub-company",
   },
 ] as const;
 
@@ -406,7 +406,7 @@ export const corporateStructure = {
     },
     {
       name: "SLICK TECHNOLOGIES",
-      note: "Branded Product Ecosystem by Next360",
+      note: "Sub-company of Next360",
       children: [
         { name: "SlickCode", note: "" },
         { name: "SlickSEO", note: "" },
@@ -568,7 +568,7 @@ export type Project = {
 };
 
 /*
-  Nine confirmed projects from the owner's FRD (2026-10-01), flagship first,
+  Eight confirmed projects from the owner's FRD (2026-10-01), flagship first,
   then the three earlier names still awaiting detail. Every field below is
   quoted or directly stated by the source; nothing is inferred from a name.
 */
@@ -748,29 +748,6 @@ export const projects: Project[] = [
     status: TBC,
   },
   {
-    slug: "slick-technologies",
-    name: "Slick Technologies",
-    category: "Software Products",
-    flagship: false,
-    confirmed: true,
-    overview:
-      "The product ecosystem developed under Slick Technologies: SlickCode, Let's Connect, SlickSEO, Slixo and Organize.",
-    purpose:
-      "Show Next360's own software-product and innovation capability.",
-    solution:
-      "Five products spanning AI-assisted development, networking, SEO, billing and productivity.",
-    capabilities: [
-      "SlickCode",
-      "Let's Connect",
-      "SlickSEO",
-      "Slixo",
-      "Organize",
-    ],
-    technology: [],
-    role: "Product ecosystem developed by Next360.",
-    status: TBC,
-  },
-  {
     slug: "vanyabhumi",
     name: "Vanyabhumi",
     category: TBC,
@@ -814,9 +791,9 @@ export const projects: Project[] = [
   },
 ];
 
-/* Approved descriptor, use verbatim. */
+/* Owner-confirmed 2026-10-01: SLICK Technologies is a Next360 sub-company. */
 export const slickDescriptor =
-  "SLICK Technologies, a branded product ecosystem by Next360.";
+  "SLICK Technologies, a Next360 sub-company building its own software products.";
 
 /*
   Five products. Let's Connect was added by the owner's FRD of 2026-10-01.
@@ -862,7 +839,7 @@ export const slickProducts = [
       "Business operations",
       "Business workflows",
     ],
-    rule: "Presented as a Next360 / SLICK Technologies product.",
+    rule: "Presented as a Slick Technologies product.",
     positioning: "",
     status: TBC,
   },
@@ -978,7 +955,7 @@ export const profileArchitecture = [
   { no: "06", title: "Selected Projects", note: "Proven projects and deployments." },
   { no: "07", title: "IT Services", note: "Software, infrastructure, support, managed services." },
   { no: "08", title: "Technology Capabilities", note: "Technology connected to real work." },
-  { no: "09", title: "SLICK Technologies", note: "Branded product ecosystem and five products." },
+  { no: "09", title: "SLICK Technologies", note: "Sub-company of Next360 and its five products." },
   { no: "10", title: "Team", note: "30+ extended network, 15+ developers, 6+ interns." },
   { no: "11", title: "Delivery Capabilities", note: "Identify, build, deploy, measure." },
   { no: "12", title: "Future Direction", note: "Credible forward-looking direction." },

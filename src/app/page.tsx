@@ -9,6 +9,8 @@ import {
   SectionLabel,
   SectionTitle,
 } from "@/components/ui";
+import BrandSlider from "@/components/ui/hero-01-utils/brand-slider";
+import HeroSection from "@/components/ui/hero-01-utils/hero";
 import { metadataFor } from "@/lib/seo";
 import {
   capabilityLists,
@@ -34,12 +36,6 @@ export const metadata = metadataFor("/");
   Technologies, 7 capability inventories, 7b mentorship and collaborators,
   8 team, 9 contact.
 */
-const heroStats = [
-  { value: "06", label: "Technology Domains" },
-  { value: company.team.developers, label: "Developers" },
-  { value: "09", label: "Proven Projects" },
-] as const;
-
 /*
   Projects 01 to 04 of the owner's list, shown here as the preview. Organic
   leads the page above as flagship, so it is deliberately not repeated.
@@ -51,79 +47,43 @@ const previewProjects = projects
 export default function HomePage() {
   return (
     <>
-      {/* 1 + 2: identity and what Next360 does */}
-      <section
-        id="home"
-        className="relative flex h-screen min-h-[800px] items-center justify-center overflow-hidden"
-      >
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={photos.hero}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-black/60" />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
-        </div>
-
-        <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pt-20">
-          <Reveal className="max-w-3xl">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 py-1.5 pl-2 pr-4 shadow-lg backdrop-blur-md">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-accent text-[10px] font-bold text-brand-dark">
-                360
-              </span>
-              <span className="text-xs font-bold uppercase tracking-wide text-white">
-                Digital Commerce + AI + Infrastructure
-              </span>
-            </div>
-
-            <h1 className="mb-6 text-6xl font-black leading-[0.9] tracking-tighter text-white drop-shadow-xl lg:text-8xl">
-              BUILDING
-              <br />
-              <span className="bg-gradient-to-r from-brand-accent to-brand-green bg-clip-text text-transparent">
-                TECHNOLOGY.
-              </span>
-            </h1>
-
-            <p className="mb-4 max-w-xl text-xl font-bold leading-relaxed text-white drop-shadow-md">
-              {company.tagline}
-            </p>
-            <p className="mb-10 max-w-xl text-lg font-medium leading-relaxed text-gray-200 drop-shadow-md">
-              {company.heroLede}
-            </p>
-
-            <div className="mb-16 flex flex-col gap-4 sm:flex-row">
-              <ButtonLink href="/organic">See the flagship project</ButtonLink>
-              <Link
-                href="/contact"
-                className="inline-flex items-center justify-center gap-3 rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-bold tracking-wide text-white backdrop-blur-md transition hover:bg-white hover:text-black"
-              >
-                <i
-                  className="fa-solid fa-folder-open text-lg text-brand-accent"
-                  aria-hidden="true"
-                />
-                Request Company Profile
-              </Link>
-            </div>
-
-            <div className="inline-flex flex-wrap items-center gap-8 border-t border-white/20 pt-8">
-              {heroStats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="font-mono text-3xl font-black text-white">
-                    {stat.value}
-                  </p>
-                  <p className="text-xs font-bold uppercase tracking-wider text-brand-accent">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* 1 + 2: hero-01 — keeps the existing /images/hero-farm.jpg
+          background, Next360 copy from site.ts, Unsplash avatar stack,
+          and lucide-icon domain strip. Global Header comes from layout. */}
+      <HeroSection
+        avatarList={[
+          {
+            image:
+              "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=96&q=80&auto=format&fit=crop",
+            name: "Network member",
+          },
+          {
+            image:
+              "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=96&q=80&auto=format&fit=crop",
+            name: "Network member",
+          },
+          {
+            image:
+              "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&q=80&auto=format&fit=crop",
+            name: "Network member",
+          },
+          {
+            image:
+              "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80&auto=format&fit=crop",
+            name: "Network member",
+          },
+        ]}
+      />
+      <BrandSlider
+        brandList={[
+          { name: "Digital Commerce" },
+          { name: "Business Technology" },
+          { name: "AI & Computer Vision" },
+          { name: "Digital Infrastructure" },
+          { name: "Digital Advertising" },
+          { name: "Digital Growth" },
+        ]}
+      />
 
       {/* 3: the six technology and business domains. */}
       <section id="verticals" className="mx-auto max-w-7xl px-6 py-20">
@@ -303,20 +263,20 @@ export default function HomePage() {
       <section id="slick" className="mx-auto max-w-7xl px-6 pb-20">
         <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <Reveal>
-            <SectionLabel label="Product Ecosystem" />
+            <SectionLabel label="Sub-company" />
             <SectionTitle className="mt-2">
               SLICK Technologies,
               <br />
-              Our Own Products.
+              Our Sub-Company.
             </SectionTitle>
             <p className="mt-4 max-w-xl text-sm leading-relaxed text-gray-600">
-              {slickDescriptor} It exists to demonstrate Next360&apos;s own
+              {slickDescriptor} Its products show Next360&apos;s own
               software-product and innovation capability.
             </p>
           </Reveal>
           <Reveal delay={60}>
             <ButtonLink href="/slick" variant="dark">
-              Explore the ecosystem
+              Explore SLICK Technologies
             </ButtonLink>
           </Reveal>
         </div>

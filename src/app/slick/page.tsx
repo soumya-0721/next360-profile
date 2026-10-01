@@ -16,7 +16,7 @@ export default function SlickPage() {
   return (
     <>
       <PageHero
-        label="Product Ecosystem"
+        label="Sub-company"
         title={
           <>
             SLICK
@@ -47,9 +47,9 @@ export default function SlickPage() {
                 {slickDescriptor}
               </p>
               <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                It exists to demonstrate Next360&apos;s own software-product
-                and innovation capability: Next360 does not only build for
-                clients, it builds its own products.
+                SLICK Technologies is a Next360 sub-company building its own
+                products: SlickCode, Let&apos;s Connect, SlickSEO, Slixo and
+                Organize.
               </p>
             </div>
           </Reveal>
@@ -57,12 +57,14 @@ export default function SlickPage() {
             <div className="h-full rounded-[2rem] border border-gray-200 bg-white p-8">
               <SectionLabel label="Where it sits" />
               <p className="mt-4 text-lg font-bold leading-snug">
-                Inside Next360, alongside the six technology domains.
+                A sub-company of Next360, sitting alongside the six technology
+                domains.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-gray-600">
                 SLICK Technologies is part of the corporate structure shown on
                 the About page: Next360, then its six technology and business
-                domains, then SLICK Technologies with its five products.
+                domains, then the SLICK Technologies sub-company with its five
+                products.
               </p>
             </div>
           </Reveal>
@@ -74,7 +76,7 @@ export default function SlickPage() {
         <Reveal>
           <SectionLabel label="Products" />
           <SectionTitle className="mt-2 max-w-2xl">
-            Five products, one ecosystem.
+            Five products, one company.
           </SectionTitle>
         </Reveal>
 
@@ -141,7 +143,8 @@ export default function SlickPage() {
             </SectionTitle>
             <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-400">
               The same team that builds the six technology domains and the
-              proven project portfolio builds the SLICK Technologies ecosystem.
+              proven project portfolio builds Slick Technologies&apos;
+              products.
             </p>
           </Reveal>
           <Reveal delay={70}>

@@ -146,7 +146,7 @@ export const pageSeo: Record<string, PageSeo> = {
   "/projects": {
     title: "Projects: Proven Deployments",
     description:
-      "Nine proven Next360 projects and deployments: Mallaram Digital Village, ORR CCTV monitoring, facial recognition and more. Browse the work.",
+      "Eight proven Next360 projects and deployments: Mallaram Digital Village, ORR CCTV monitoring, facial recognition and more. Browse the work.",
     keywords: [
       "Next360 Organic",
       "Mallaram Digital Village",
@@ -158,7 +158,7 @@ export const pageSeo: Record<string, PageSeo> = {
   "/slick": {
     title: "SLICK Technologies by Next360",
     description:
-      "SLICK Technologies, a branded product ecosystem by Next360: SlickCode, Let's Connect, SlickSEO, Slixo and Organize. See the products.",
+      "SLICK Technologies, a Next360 sub-company building its own software products: SlickCode, Let's Connect, SlickSEO, Slixo and Organize. See the products.",
     keywords: [
       "Slick Technologies",
       "SlickCode",
@@ -244,7 +244,7 @@ export function organizationJsonLd(): Record<string, unknown> {
       "@type": "Organization",
       name: "SLICK Technologies",
       description:
-        "Branded product ecosystem by Next360: SlickCode, Let's Connect, SlickSEO, Slixo and Organize.",
+        "Next360 sub-company building its own software products: SlickCode, Let's Connect, SlickSEO, Slixo and Organize.",
     },
     knowsAbout: Array.from(
       new Set([

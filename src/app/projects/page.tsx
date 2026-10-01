@@ -115,7 +115,7 @@ export default function ProjectsPage() {
         </Reveal>
       </section>
 
-      {/* The remaining eleven, each carrying the full nine-field spec. */}
+      {/* The remaining ten, each carrying the full nine-field spec. */}
       <section className="mx-auto max-w-7xl px-6 pb-20">
         <Reveal>
           <SectionLabel label="Portfolio" />

@@ -15,9 +15,17 @@ const nextConfig: NextConfig = {
     ];
   },
   /*
-    Every photo now lives in /public/images, so no remote image host is
-    allowlisted. Adding one back means adding it here deliberately.
+    Remote avatars for the hero-01 social-proof stack (Unsplash stock).
+    Site photography itself stays local in /public/images.
   */
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+    ],
+  },
   turbopack: {
     root: process.cwd(),
   },

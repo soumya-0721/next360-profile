@@ -24,9 +24,21 @@
   */
   --color-background: #ffffff;
   --color-foreground: #111827;
+  --color-muted: #f3f4f6;
   --color-muted-foreground: #6b7280;
   --color-border: #e5e7eb;
   --color-input: #d1d5db;
+  --color-primary: #0f0f0f;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f3f4f6;
+  --color-secondary-foreground: #111827;
+  --color-accent: #ccff00;
+  --color-accent-foreground: #0f0f0f;
+  --color-destructive: #dc2626;
+  --color-destructive-foreground: #ffffff;
+  --color-ring: #7a6228;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #111827;
 
   --font-sans: var(--font-inter), sans-serif;
 

@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 import { Reveal } from "@/components/reveal";
 
-/* Reference section marker: green dot + uppercase tracked label. */
+/* Reference section marker: uppercase tracked label (dot removed per owner request). */
 export function SectionLabel({
   label,
   tone = "light",
@@ -16,12 +16,6 @@ export function SectionLabel({
 }) {
   return (
     <div className={`flex items-center gap-2 ${className}`}>
-      <span
-        className={`h-2 w-2 rounded-full ${
-          tone === "dark" ? "bg-brand-accent" : "bg-green-500"
-        }`}
-        aria-hidden="true"
-      />
       <span
         className={`text-sm font-bold uppercase tracking-widest ${
           tone === "dark" ? "text-gray-400" : "text-gray-500"
@@ -199,8 +193,9 @@ export function PhotoBand({
 }
 
 /*
-  Reference dark section turn: near-black panel with a 3rem top radius that
-  overlaps the light section above it.
+  Reference dark section turn: near-black floating card with a 2.5rem radius
+  on all four sides. Side and bottom margins keep every corner visible
+  against the light page and the footer below it.
 */
 export function DarkSection({
   children,
@@ -214,7 +209,7 @@ export function DarkSection({
   return (
     <section
       id={id}
-      className={`relative z-10 -mt-10 rounded-t-[3rem] bg-[#0a0a0a] py-24 text-white ${className}`}
+      className={`relative z-10 mx-4 mb-10 mt-4 rounded-[2.5rem] bg-[#0a0a0a] py-24 text-white md:mx-6 ${className}`}
     >
       {children}
     </section>
