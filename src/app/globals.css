@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/*
+  Reference palette (owner direction, 2026-09-24): the lime scheme from the
+  reference component is the site's identity. Token names are unchanged so
+  class usages did not have to be rewritten; the gold/ivory/sage editorial
+  tokens left with the editorial retoken.
+*/
+@theme {
+  --color-brand-green: #84cc16; /* lime-500 */
+  --color-brand-accent: #ccff00; /* vibrant lime: buttons, badges, hover states */
+  --color-brand-dark: #0f0f0f;
+  --color-brand-dark-green: #1a4d1a;
+  --color-brand-dark-green-ring: #2a6d2a;
+  /* AA-safe green for text on light surfaces (5.45:1 on white); the pure
+     lime above stays for fills, badges and text on dark. */
+  --color-brand-green-ink: #4a751a;
+
+  /*
+    shadcn-style surface tokens, required by src/components/ui/*.
+    This project was not bootstrapped with the shadcn CLI (no
+    components.json), so the tokens the CLI normally generates are defined
+    here instead. Light values match the site body (#f9fafb family).
+  */
+  --color-background: #ffffff;
+  --color-foreground: #111827;
+  --color-muted-foreground: #6b7280;
+  --color-border: #e5e7eb;
+  --color-input: #d1d5db;
+
+  --font-sans: var(--font-inter), sans-serif;
+
+  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+  --animate-spin-slow: spin 12s linear infinite;
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Reference global scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+::-webkit-scrollbar-thumb {
+  background: #84cc16;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #65a30d;
+}
+
+.huge-text {
+  font-size: clamp(8rem, 20vw, 25rem);
+  line-height: 0.8;
+  letter-spacing: -0.05em;
+}
+
+/* Reference scroll reveal: one motion, 0.8s ease-out, 20px rise */
+.animate-on-scroll-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.animate-on-scroll-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: #f9fafb;
+  color: #111827;
+  /*
+    var(--font-inter), not var(--font-sans). next/font's variable class used to
+    sit on <body>, so --font-inter was undefined at :root, where @theme resolves
+    --font-sans. That made --font-sans invalid at computed-value time and body
+    silently inherited the system stack instead of Inter, despite the font
+    having loaded. The class now lives on <html>; referencing --font-inter
+    directly keeps this rule correct regardless of where @theme resolves.
+  */
+  font-family: var(--font-inter), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Content must never stay hidden when motion is reduced or JS never runs. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-on-scroll-hidden {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-spin-slow {
+    animation: none !important;
+  }
+}
+
+:focus-visible {
+  /* Deliberately not lime: this hex is the one outline that clears 3:1
+     against both the light surfaces and the #0a0a0a/black panels, and it
+     only appears for keyboard focus. */
+  outline: 2px solid #7a6228;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: #ccff00;
+  color: #0f0f0f;
+}
