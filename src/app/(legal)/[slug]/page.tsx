@@ -36,7 +36,7 @@ const docs: Doc[] = [
       },
       {
         heading: "Status",
-        body: "[TO BE CONFIRMED: this policy is drafted and awaits legal review before publication. Retention periods, lawful basis and processor details will be added once confirmed.]",
+        body: "This policy is pending legal review. Retention periods, lawful basis and processor details will be added once confirmed.",
       },
     ],
   },
@@ -56,7 +56,7 @@ const docs: Doc[] = [
       },
       {
         heading: "Status",
-        body: "[TO BE CONFIRMED: this document is drafted and awaits legal review before publication. Company registration details and governing law will be added once confirmed.]",
+        body: "This document is pending legal review. Company registration details and governing law will be added once confirmed.",
       },
     ],
   },
@@ -76,7 +76,7 @@ const docs: Doc[] = [
       },
       {
         heading: "Status",
-        body: "[TO BE CONFIRMED: to be re-confirmed at launch if analytics or any other non-essential script is added.]",
+        body: "This statement will be re-confirmed at launch if analytics or any other non-essential script is added.",
       },
     ],
   },
@@ -88,7 +88,7 @@ const docs: Doc[] = [
     sections: [
       {
         heading: "Operator",
-        body: "Next360. Legal entity name, registration number and registered address: [TO BE CONFIRMED].",
+        body: `${company.legalName}. CIN ${company.registration.cin}. Registered address: ${company.contact.address}.`,
       },
       {
         heading: "Contact",
@@ -96,7 +96,7 @@ const docs: Doc[] = [
       },
       {
         heading: "Status",
-        body: "[TO BE CONFIRMED: operator details are supplied by the client and verified before publication, per the approval checklist.]",
+        body: "Operator details above are published from verified company records. This notice is pending legal review.",
       },
     ],
   },

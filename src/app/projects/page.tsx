@@ -11,23 +11,24 @@ import { photos, projects, TBC } from "@/lib/site";
 
 export const metadata = metadataFor("/projects");
 
-/* The nine fields every project entry carries. */
-const fieldRows = (p: (typeof projects)[number]) => [
-  { label: "Category", value: p.category },
-  { label: "Overview", value: p.overview },
-  { label: "Purpose and problem", value: p.purpose },
-  { label: "Solution", value: p.solution },
-  {
-    label: "Key capabilities",
-    value: p.capabilities.length ? p.capabilities.join(", ") : TBC,
-  },
-  {
-    label: "Technology",
-    value: p.technology.length ? p.technology.join(", ") : TBC,
-  },
-  { label: "Next360's role", value: p.role },
-  { label: "Current status", value: p.status },
-];
+/* The fields every project entry carries. Unconfirmed values are omitted. */
+const fieldRows = (p: (typeof projects)[number]) =>
+  [
+    { label: "Category", value: p.category },
+    { label: "Overview", value: p.overview },
+    { label: "Purpose and problem", value: p.purpose },
+    { label: "Solution", value: p.solution },
+    {
+      label: "Key capabilities",
+      value: p.capabilities.length ? p.capabilities.join(", ") : "",
+    },
+    {
+      label: "Technology",
+      value: p.technology.length ? p.technology.join(", ") : "",
+    },
+    { label: "Next360's role", value: p.role },
+    { label: "Current status", value: p.status },
+  ].filter((row) => row.value && row.value !== TBC);
 
 export default function ProjectsPage() {
   const [flagship, ...others] = projects;
@@ -46,7 +47,7 @@ export default function ProjectsPage() {
             </span>
           </>
         }
-        intro={`${confirmedCount} proven projects and technology deployments, led by the Next360 Organic Marketplace flagship. Three earlier portfolio names are still awaiting detail and are published as-is rather than filled with an assumption.`}
+        intro={`${confirmedCount} proven projects and technology deployments, led by the Next360 Organic Marketplace flagship.`}
       />
 
       {/* Flagship gets its own treatment: never one card among many. */}
@@ -115,7 +116,7 @@ export default function ProjectsPage() {
         </Reveal>
       </section>
 
-      {/* The remaining ten, each carrying the full nine-field spec. */}
+      {/* The remaining ten, each carrying the verified fields. */}
       <section className="mx-auto max-w-7xl px-6 pb-20">
         <Reveal>
           <SectionLabel label="Portfolio" />
@@ -123,10 +124,8 @@ export default function ProjectsPage() {
             The wider project portfolio.
           </SectionTitle>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-600">
-            Every entry carries the same nine fields. Fields still reading{" "}
-            <span className="font-semibold text-black">[TO BE CONFIRMED]</span>{" "}
-            have not been supplied or verified yet, and are published as-is
-            rather than filled with an assumption.
+            Every entry carries the same fields. Anything not yet supplied or
+            verified is left out rather than filled with an assumption.
           </p>
         </Reveal>
 
@@ -169,6 +168,11 @@ export default function ProjectsPage() {
                     </div>
                   ))}
                 </dl>
+                {fieldRows(project).length === 0 ? (
+                  <p className="mt-6 border-t border-gray-100 pt-6 text-sm leading-relaxed text-gray-500">
+                    Details coming soon — published only once verified.
+                  </p>
+                ) : null}
               </div>
             </Reveal>
           ))}

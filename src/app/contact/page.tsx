@@ -68,11 +68,8 @@ export default function ContactPage() {
               </dl>
 
               <p className="mt-6 border-t border-gray-200 pt-5 text-[13px] leading-relaxed text-gray-500">
-                Establishment year, IEC and Udyam registration are{" "}
-                <span className="font-semibold text-gray-700">
-                  [TO BE CONFIRMED]
-                </span>{" "}
-                and will be published once verified.
+                Establishment year, IEC and Udyam registration will be
+                published once verified.
               </p>
             </div>
           </Reveal>

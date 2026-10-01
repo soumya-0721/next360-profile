@@ -44,6 +44,7 @@
 
   --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
   --animate-spin-slow: spin 12s linear infinite;
+  --animate-marquee: marquee 45s linear infinite;
 
   @keyframes fadeInUp {
     0% {
@@ -53,6 +54,15 @@
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
     }
   }
 }
@@ -121,6 +131,9 @@ body {
     transition: none;
   }
   .animate-spin-slow {
+    animation: none !important;
+  }
+  .animate-marquee {
     animation: none !important;
   }
 }

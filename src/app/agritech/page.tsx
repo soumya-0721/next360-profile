@@ -71,10 +71,7 @@ export default function AgritechPage() {
             Products, platforms and solutions for the field.
           </SectionTitle>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-600">
-            Capability verification:{" "}
-            <span className="font-semibold text-black">
-              {agritech.verification}
-            </span>
+            Each capability row publishes only once verified.
           </p>
         </Reveal>
 
@@ -102,7 +99,7 @@ export default function AgritechPage() {
               src={photos.field}
               alt="Agricultural land"
               title="Selected Projects"
-              description="Eight proven projects and deployments, led by Next360 Organic."
+              description="Ten proven projects and deployments, led by Next360 Organic."
             />
           </Reveal>
           <Reveal delay={80}>
@@ -135,8 +132,7 @@ export default function AgritechPage() {
             <div className="mt-8 rounded-3xl border border-dashed border-gray-700 bg-[#111] p-8 text-center">
               <p className="text-lg font-bold">Agritech deployments</p>
               <p className="mx-auto mt-2 max-w-md text-sm text-gray-400">
-                [TO BE CONFIRMED]: Agritech projects and deployments, client to
-                provide
+                Agritech project details will be published once verified.
               </p>
               <div className="mt-6 flex justify-center">
                 <ButtonLink href="/projects" variant="white">

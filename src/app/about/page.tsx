@@ -28,7 +28,9 @@ const facts = [
   { label: "Extended network", value: company.team.extended },
   { label: "Developers", value: company.team.developers },
   { label: "Technology domains", value: String(technologyDomains.length) },
-  { label: "Established", value: company.established || "[TO BE CONFIRMED]" },
+  ...(company.established
+    ? [{ label: "Established", value: company.established }]
+    : []),
 ];
 
 /* Where each domain leads. Only routes that actually exist are linked. */
@@ -106,16 +108,10 @@ export default function AboutPage() {
 
         <Reveal delay={80}>
           <div className="rounded-[2rem] border border-gray-200 bg-gray-100 p-8 sm:p-10">
-            <p className="max-w-3xl text-lg leading-relaxed text-gray-700">
-              Founding story, establishment year and milestones:{" "}
-              <span className="font-semibold text-black">
-                [TO BE CONFIRMED]
-              </span>
-            </p>
-            <p className="mt-6 max-w-3xl text-sm leading-relaxed text-gray-500">
+            <p className="max-w-3xl text-sm leading-relaxed text-gray-500">
               Verified items today are {technologyDomains.length} technology and
               business domains, the flagship Next360 Organic Marketplace, a
-                portfolio of eight proven projects and deployments, the Slick
+                portfolio of ten proven projects and deployments, the Slick
                 Technologies sub-company, and an extended network of{" "}
               {company.team.extended} professionals including{" "}
               {company.team.developers} developers. Everything else publishes

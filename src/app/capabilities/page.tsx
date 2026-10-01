@@ -9,7 +9,7 @@ import {
   SectionTitle,
 } from "@/components/ui";
 import { metadataFor } from "@/lib/seo";
-import { company, photos, technologyDomains, technologyMap } from "@/lib/site";
+import { company, photos, technologyDomains } from "@/lib/site";
 
 export const metadata = metadataFor("/capabilities");
 
@@ -105,58 +105,33 @@ export default function CapabilitiesPage() {
         </Reveal>
       </section>
 
-      {/* Technology folded in from the retired standalone route. */}
+      {/* Technology: stated as a principle, proven in the portfolio. */}
       <section className="mx-auto max-w-7xl px-6 pb-20">
         <Reveal>
-          <SectionLabel label="Technology Capabilities" />
-          <SectionTitle className="mt-2 max-w-2xl">
-            Technology connected to real work.
-          </SectionTitle>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-600">
-            Each technology is published only once it is tied to an actual
-            project or capability. There is no logo list here, because an
-            unconnected stack claim is not a capability.
-          </p>
-        </Reveal>
-
-        <Reveal delay={70}>
-          <div className="mt-10 overflow-hidden rounded-[2rem] border border-gray-200 bg-white">
-            <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)_auto] gap-4 border-b border-gray-100 bg-gray-50 px-6 py-3 text-xs font-bold uppercase tracking-wider text-gray-500 md:px-8">
-              <span>Technology</span>
-              <span>Connected project or capability</span>
-              <span>Status</span>
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-brand-dark-green p-8 text-white md:p-14">
+            <div
+              className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full border-[24px] border-brand-dark-green-ring opacity-50"
+              aria-hidden="true"
+            />
+            <div className="relative z-10 max-w-2xl">
+              <SectionLabel label="Technology Capabilities" tone="dark" />
+              <SectionTitle tone="dark" className="mt-2">
+                Technology connected to real work.
+              </SectionTitle>
+              <p className="mt-4 text-sm leading-relaxed text-green-100">
+                Every stack claim on this site ties to an actual project or
+                capability — see the ten proven deployments. There is no logo
+                list here, because an unconnected stack claim is not a
+                capability.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <ButtonLink href="/projects">See the proof</ButtonLink>
+                <ButtonLink href="/contact" variant="white">
+                  Scope a requirement
+                </ButtonLink>
+              </div>
             </div>
-            <ul>
-              {technologyMap.map((row) => (
-                <li
-                  key={row.tech}
-                  className="grid grid-cols-[minmax(0,1fr)_minmax(0,2fr)_auto] items-baseline gap-4 border-b border-gray-100 px-6 py-4 last:border-0 md:px-8"
-                >
-                  <span className="text-sm font-semibold">{row.tech}</span>
-                  <span className="text-sm leading-relaxed text-gray-600">
-                    {row.connection}
-                  </span>
-                  <span
-                    className={`rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wider ${
-                      row.verified
-                        ? "bg-brand-accent text-black"
-                        : "bg-gray-100 text-gray-500"
-                    }`}
-                  >
-                    {row.verified ? "Verified" : "Pending"}
-                  </span>
-                </li>
-              ))}
-            </ul>
           </div>
-        </Reveal>
-
-        <Reveal delay={140}>
-          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-gray-500">
-            ManageEngine is listed as a candidate for monitoring, service desk
-            and asset management. It stays pending until that usage is
-            confirmed.
-          </p>
         </Reveal>
       </section>
 
@@ -177,7 +152,7 @@ export default function CapabilitiesPage() {
               src={photos.infrastructure}
               alt="Server infrastructure"
               title="Projects"
-              description="Eight proven projects and deployments."
+              description="Ten proven projects and deployments."
             />
           </Reveal>
         </div>

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { MentorMarquee } from "@/components/mentor-marquee";
 import { Reveal } from "@/components/reveal";
 import {
   ButtonLink,
@@ -380,6 +381,9 @@ export default function HomePage() {
 
       {/* 7b: mentorship and strategic collaborators. */}
       <section id="partners" className="mx-auto max-w-7xl px-6 pb-20">
+        <Reveal className="mb-8">
+          <MentorMarquee />
+        </Reveal>
         <div className="grid gap-6 md:grid-cols-2">
           <Reveal>
             <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-8">
@@ -456,12 +460,6 @@ export default function HomePage() {
                   </li>
                 ))}
               </ul>
-              <p className="mt-6 text-[13px] text-gray-500">
-                Individual names, roles and photographs:{" "}
-                <span className="font-semibold text-black">
-                  [TO BE CONFIRMED]
-                </span>
-              </p>
             </div>
           </Reveal>
 

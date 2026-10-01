@@ -254,37 +254,65 @@ export const executionModel = [
   },
 ] as const;
 
-/* Mentorship, owner-supplied 2026-10-01. Roles published as stated. */
+/*
+  Mentorship, owner-supplied 2026-10-01. Roles published as stated.
+  photo: portrait at the exact path below — drop the file in and the
+  marquee picks it up with no code change. Until then it renders initials.
+  Expected files:
+    /public/images/mentors/mentor-google.jpg
+    /public/images/mentors/mentor-intown.jpg
+    /public/images/mentors/mentor-thub.jpg
+*/
 export const mentorship = [
   {
     name: "Google Gemini Project Manager",
+    title: "Project Manager",
+    org: "Google Gemini",
     note: "Expert mentorship in technology, product development and industry practices.",
+    photo: "/images/mentors/mentor-google.jpg",
   },
   {
     name: "INTOWN CEO",
+    title: "Chief Executive Officer",
+    org: "INTOWN",
     note: "15+ years of experience in sales and marketing, with experience in the successful implementation of three startups, providing guidance in sales, marketing, business development and growth.",
+    photo: "/images/mentors/mentor-intown.jpg",
   },
   {
     name: "T-Hub",
+    title: "Startup Mentor",
+    org: "T-Hub",
     note: "Startup ecosystem mentorship, guidance and industry connections through T-Hub, one of India's prominent startup incubation and innovation ecosystems.",
+    photo: "/images/mentors/mentor-thub.jpg",
   },
-] as const;
+];
 
-/* Strategic collaborators and service partners, owner-supplied 2026-10-01. */
+/*
+  Strategic collaborators and service partners, owner-supplied 2026-10-01.
+  logo: mark at the exact path below — drop the file in and the marquee
+  picks it up with no code change. Until then it renders the name.
+  Expected files:
+    /public/images/partners/partner-acs.png
+    /public/images/partners/partner-logiq-gen.png
+    /public/images/partners/partner-intown.png
+*/
 export const collaborators = [
   {
     name: "ACS",
     note: "Technology and project collaboration, including government-facing infrastructure projects.",
+    logo: "/images/partners/partner-acs.png",
   },
   {
     name: "Logiq Gen – AI Nestham",
     note: "Technology and AI-oriented collaboration supporting digital and AI initiatives.",
+    logo: "/images/partners/partner-logiq-gen.png",
   },
   {
     name: "INTOWN",
     note: "Sales, marketing, business development and strategic growth collaboration.",
+    logo: "/images/partners/partner-intown.png",
   },
-] as const;
+];
 
 export const collaboratorNote =
   "The partner network enables Next360 to combine internal product development capabilities with specialized expertise across technology, AI, sales, marketing and implementation.";
@@ -335,7 +363,7 @@ export const companySnapshot = [
   },
   {
     label: "Core Domains",
-    value: "AI, Computer Vision, Commerce, Software, Infrastructure, AdTech",
+    value: "AI, Software, Digital Commerce, Infrastructure & Automation",
   },
   { label: "Registered Office", value: company.contact.addressShort },
   { label: "Website", value: "next360.in" },
@@ -568,9 +596,9 @@ export type Project = {
 };
 
 /*
-  Eight confirmed projects from the owner's FRD (2026-10-01), flagship first,
-  then the three earlier names still awaiting detail. Every field below is
-  quoted or directly stated by the source; nothing is inferred from a name.
+  Ten confirmed projects from the owner's FRD (2026-10-01), flagship first.
+  Every field below is quoted or directly stated by the source; nothing is
+  inferred from a name.
 */
 export const projects: Project[] = [
   {
@@ -603,7 +631,7 @@ export const projects: Project[] = [
     flagship: false,
     confirmed: true,
     overview:
-      "A digital governance and rural technology platform designed and developed for Mallaram Gram Panchayat, Telangana. It brings digital governance, citizen services, village information and technology-enabled rural services together through a unified digital ecosystem.",
+      "A digital governance and rural technology platform designed and developed for Mallaram Gram Panchayat, Telangana. It brings digital governance, citizen services, village information and technology-enabled rural services together through a unified digital ecosystem. The initiative has received national-level recognition.",
     purpose:
       "Bring village information, citizen services and rural technology services into one accessible platform.",
     solution:
@@ -750,44 +778,45 @@ export const projects: Project[] = [
   {
     slug: "vanyabhumi",
     name: "Vanyabhumi",
-    category: TBC,
+    category: "Digital Commerce",
     flagship: false,
-    confirmed: false,
-    overview: TBC,
-    purpose: TBC,
-    solution: TBC,
-    capabilities: [],
+    confirmed: true,
+    overview:
+      "A digital e-commerce platform built by Next360 for selling products online through an owned storefront.",
+    purpose:
+      "Give sellers an owned online channel to list products and take orders directly.",
+    solution:
+      "Storefront, product catalog, cart, checkout and order management in one platform.",
+    capabilities: [
+      "Product catalog",
+      "Cart and checkout",
+      "Order management",
+    ],
     technology: [],
-    role: TBC,
-    status: TBC,
+    role: "Designed and developed by Next360.",
+    status: "Live",
   },
   {
     slug: "ayurvena",
     name: "Ayurvena",
-    category: TBC,
+    category: "Business Technology",
     flagship: false,
-    confirmed: false,
-    overview: TBC,
-    purpose: TBC,
-    solution: TBC,
-    capabilities: [],
+    confirmed: true,
+    overview:
+      "An outpatient (OP) appointment booking system connecting patients with hospitals and clinics.",
+    purpose:
+      "Replace phone and queue-based OP booking with online doctor search and slot booking.",
+    solution:
+      "Doctor search, OP slot booking, appointment reminders and payments in one system.",
+    capabilities: [
+      "Doctor search",
+      "OP slot booking",
+      "Appointment reminders",
+      "Payments",
+    ],
     technology: [],
-    role: TBC,
-    status: TBC,
-  },
-  {
-    slug: "leader-portfolios",
-    name: "Leader Portfolios",
-    category: TBC,
-    flagship: false,
-    confirmed: false,
-    overview: TBC,
-    purpose: TBC,
-    solution: TBC,
-    capabilities: [],
-    technology: [],
-    role: TBC,
-    status: TBC,
+    role: "Designed and developed by Next360.",
+    status: "In Development",
   },
 ];
 
@@ -979,13 +1008,16 @@ export const neverFabricate = [
 ] as const;
 
 export const teamCapabilityAreas = [
-  "Leadership",
-  "Software Engineering",
-  "Product Development",
-  "IT Services",
-  "Infrastructure",
-  "Design",
-  "Operations",
+  "Artificial Intelligence & Computer Vision",
+  "Web & Mobile Application Development",
+  "Software & SaaS Development",
+  "Digital Marketplaces",
+  "Business Automation",
+  "CRM & IVR Systems",
+  "Digital Infrastructure",
+  "EV Technology",
+  "Digital Advertising",
+  "SEO & Digital Growth",
 ] as const;
 
 export const deliverySteps = executionModel;

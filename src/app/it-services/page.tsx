@@ -90,10 +90,7 @@ export default function ItServicesPage() {
             Eleven capabilities, one accountable team.
           </SectionTitle>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-600">
-            Capability verification:{" "}
-            <span className="font-semibold text-black">
-              {itServices.verification}
-            </span>
+            Each capability row publishes only once verified.
           </p>
         </Reveal>
 
@@ -175,7 +172,7 @@ export default function ItServicesPage() {
               src={photos.engineering}
               alt="Engineering workspace"
               title="Projects"
-              description="Eight proven projects and deployments, led by Next360 Organic."
+              description="Ten proven projects and deployments, led by Next360 Organic."
             />
           </Reveal>
         </div>
@@ -191,13 +188,7 @@ export default function ItServicesPage() {
             <p className="mt-4 max-w-2xl text-gray-400">
               Quality, security and governance detail forms part eleven of the
               company profile. Controls and certifications are published only
-              once verified.
-            </p>
-            <p className="mt-4 max-w-2xl text-sm text-gray-500">
-              Certifications and registrations:{" "}
-              <span className="font-semibold text-white">
-                [TO BE CONFIRMED]
-              </span>
+              once verified — request documentation for what you need.
             </p>
           </Reveal>
 

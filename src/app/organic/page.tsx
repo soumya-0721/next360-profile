@@ -13,6 +13,7 @@ import {
   organicDomains,
   photos,
   statusVocabulary,
+  TBC,
 } from "@/lib/site";
 
 export const metadata = metadataFor("/organic");
@@ -86,12 +87,9 @@ export default function OrganicPage() {
           </SectionTitle>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-600">
             Fourteen content blocks are specified for Next360 Organic. Blocks
-            that still read {""}
-            <span className="font-semibold text-black">
-              [TO BE CONFIRMED]
-            </span>{" "}
-            have not been supplied yet. No metrics, users, revenue, market
-            coverage or outcomes are stated until they are verified.
+            without supplied detail are marked as coming soon below. No
+            metrics, users, revenue, market coverage or outcomes are stated
+            until they are verified.
           </p>
         </Reveal>
 
@@ -109,14 +107,19 @@ export default function OrganicPage() {
                       <span className="font-medium text-gray-700">
                         {block.approved}
                       </span>
-                      <span className="mt-1 block">
-                        Detail: <span className="font-semibold">{block.detail}</span>
-                      </span>
+                      {block.detail !== TBC ? (
+                        <span className="mt-1 block">
+                          Detail:{" "}
+                          <span className="font-semibold">{block.detail}</span>
+                        </span>
+                      ) : null}
                     </>
-                  ) : (
+                  ) : block.detail !== TBC ? (
                     <span className="font-semibold text-gray-700">
                       {block.detail}
                     </span>
+                  ) : (
+                    <span className="italic">Details coming soon.</span>
                   )}
                 </span>
               </div>
@@ -141,8 +144,8 @@ export default function OrganicPage() {
             </div>
             <p className="mt-4 text-sm leading-relaxed text-gray-600">
               Current status of Next360 Organic:{" "}
-              <span className="font-semibold text-black">[TO BE CONFIRMED]</span>
-              . Only the actual status will be published.
+              <span className="font-semibold text-black">To be published</span>.
+              Only the actual status will be published.
             </p>
           </div>
         </Reveal>

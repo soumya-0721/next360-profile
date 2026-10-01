@@ -41,7 +41,10 @@ export default function HeroSection({
   const avatars = avatarList.length > 0 ? avatarList : FALLBACK_AVATARS;
 
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black">
+    <section
+      id="home"
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black"
+    >
       {/* Keep the existing site hero image — same asset as the homepage. */}
       <div className="absolute inset-0">
         <Image

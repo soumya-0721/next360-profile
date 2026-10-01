@@ -146,7 +146,7 @@ export const pageSeo: Record<string, PageSeo> = {
   "/projects": {
     title: "Projects: Proven Deployments",
     description:
-      "Eight proven Next360 projects and deployments: Mallaram Digital Village, ORR CCTV monitoring, facial recognition and more. Browse the work.",
+      "Ten proven Next360 projects and deployments: Mallaram Digital Village, ORR CCTV monitoring, facial recognition and more. Browse the work.",
     keywords: [
       "Next360 Organic",
       "Mallaram Digital Village",
