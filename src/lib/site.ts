@@ -128,6 +128,12 @@ export const company = {
   contact: {
     email: "office@next360.in",
     phone: "+91-9989163332",
+    /*
+      wa.me needs the number as digits with the country code and no punctuation.
+      Derived from the published phone above rather than restated, so the two
+      can never disagree.
+    */
+    whatsapp: "919989163332",
     address:
       "T-Hub Phase 2 Launch, 20 Inorbit Mall Road, Vittal Rao Nagar, Madhapur, Hyderabad, Telangana 500081",
     addressShort: "T-Hub Phase 2, Hyderabad",
@@ -371,26 +377,6 @@ export const companySnapshot = [
   { label: "CIN", value: company.registration.cin },
 ] as const;
 
-export const storyHierarchy = [
-  { level: "01", name: "NEXT360", note: "Parent technology organization" },
-  {
-    level: "02",
-    name: "Six technology domains",
-    note: "Commerce, business technology, AI, infrastructure, advertising, growth",
-  },
-  {
-    level: "03",
-    name: "NEXT360 ORGANIC",
-    note: "Flagship venture",
-  },
-  { level: "04", name: "Proven projects and deployments", note: "Portfolio breadth" },
-  {
-    level: "05",
-    name: "SLICK TECHNOLOGIES",
-    note: "Next360 sub-company",
-  },
-] as const;
-
 export const corporateStructure = {
   root: "NEXT360",
   rootNote: company.descriptor,
@@ -460,14 +446,6 @@ export const organicDomains = [
   The fourteen required content blocks for Next360 Organic. Block 01 carries
   approved content; the rest stay on the honesty token until supplied.
 */
-export const organicCertification = {
-  certified: true,
-  firstInIndia: true,
-  verificationFirst: true,
-  traceability: true,
-  schemes: ["NPOP", "Jaivik Bharat"],
-} as const;
-
 export const organicBlocks = [
   {
     no: "01",
@@ -928,29 +906,6 @@ export const capabilityLists = [
   },
 ] as const;
 
-/*
-  Technology is published only when connected to a real project or
-  capability. No generic logo list. Every row starts unverified.
-*/
-export const technologyMap = [
-  { tech: "Next.js", connection: TBC, verified: false },
-  { tech: "React", connection: TBC, verified: false },
-  { tech: "React Native", connection: TBC, verified: false },
-  { tech: "TypeScript", connection: TBC, verified: false },
-  { tech: "Node.js", connection: TBC, verified: false },
-  { tech: "NestJS", connection: TBC, verified: false },
-  { tech: "Python", connection: TBC, verified: false },
-  { tech: "PostgreSQL", connection: TBC, verified: false },
-  { tech: "Cloud platforms", connection: TBC, verified: false },
-  { tech: "Docker", connection: TBC, verified: false },
-  { tech: "AI and LLM technologies", connection: TBC, verified: false },
-  {
-    tech: "ManageEngine technologies",
-    connection: "Candidate link to monitoring, service desk and asset management",
-    verified: false,
-  },
-] as const;
-
 export const verticals = [
   {
     index: "01",
@@ -989,22 +944,6 @@ export const profileArchitecture = [
   { no: "11", title: "Delivery Capabilities", note: "Identify, build, deploy, measure." },
   { no: "12", title: "Future Direction", note: "Credible forward-looking direction." },
   { no: "13", title: "Contact", note: "Corporate contact information." },
-] as const;
-
-/* The banned-fabrication list, kept where code can see it. */
-export const neverFabricate = [
-  "Clients",
-  "Revenue",
-  "Users",
-  "Market share",
-  "Certifications",
-  "Partnerships",
-  "Awards",
-  "Years of experience",
-  "Employee counts",
-  "Project outcomes",
-  "Geographic presence",
-  "Product launch status",
 ] as const;
 
 export const teamCapabilityAreas = [

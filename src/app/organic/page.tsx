@@ -64,7 +64,7 @@ export default function OrganicPage() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {organicDomains.map((domain, i) => (
             <Reveal key={domain} delay={i * 60}>
-              <div className="flex h-full items-start gap-4 rounded-[2rem] border border-gray-200 bg-white p-7 transition hover:border-brand-accent">
+              <div className="flex h-full items-start gap-4 rounded-[2rem] border border-gray-200 bg-white p-7 card-lift hover:border-brand-accent">
                 <span className="font-mono text-xs font-bold text-gray-400">
                   {String(i + 1).padStart(2, "0")}
                 </span>

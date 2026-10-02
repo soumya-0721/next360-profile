@@ -42,9 +42,20 @@
 
   --font-sans: var(--font-inter), sans-serif;
 
-  --animate-fade-in-up: fadeInUp 0.8s ease-out forwards;
+  /*
+    Motion curves (2026-10-02 animation pass): one signature curve for
+    entrances/reveals (out-expo: fast start, long graceful settle) and one
+    for hovers (out-cubic: soft, never abrupt). Exposed as Tailwind
+    utilities through the --ease-* namespace (ease-smooth / ease-gentle).
+  */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-gentle: cubic-bezier(0.33, 1, 0.68, 1);
+
+  --animate-fade-in-up: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-spin-slow: spin 12s linear infinite;
   --animate-marquee: marquee 45s linear infinite;
+  /* Slow cinematic push-in on the hero photograph; clipped by the section. */
+  --animate-hero-drift: heroDrift 24s cubic-bezier(0.16, 1, 0.3, 1) both;
 
   @keyframes fadeInUp {
     0% {
@@ -54,6 +65,15 @@
     100% {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  @keyframes heroDrift {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.06);
     }
   }
 
@@ -88,19 +108,55 @@
   letter-spacing: -0.05em;
 }
 
-/* Reference scroll reveal: one motion, 0.8s ease-out, 20px rise */
+/*
+  Reference scroll reveal: one motion, 0.8s, 20px rise. The curve is now
+  out-expo (fast start, long settle) instead of the stock ease-out, which is
+  what makes the same distance read as effortless rather than mechanical.
+  Only opacity and transform animate, so every reveal stays on the
+  compositor.
+
+  The transition is declared on BOTH states on purpose: CSS reads the
+  transition parameters from the after-change style, so a transition that
+  exists only on .animate-on-scroll-hidden is gone by the time the class
+  swaps to -visible — the element then snaps instead of animating (the
+  "everything spawns" bug, verified 2026-10-02 in probe-reveal.mjs).
+*/
+.animate-on-scroll-hidden,
+.animate-on-scroll-visible {
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
 .animate-on-scroll-hidden {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
 }
 .animate-on-scroll-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
+/*
+  Shared card hover: a 5px lift with a soft shadow, border/background still
+  transitioning through the utilities the card itself declares. Unlayered on
+  purpose so it wins over Tailwind's bare `transition` utility.
+*/
+.card-lift {
+  transition:
+    transform 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    box-shadow 0.45s cubic-bezier(0.33, 1, 0.68, 1),
+    border-color 0.3s ease,
+    background-color 0.3s ease;
+}
+.card-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 24px 48px -24px rgb(0 0 0 / 0.28);
+}
+
 html {
   scroll-behavior: smooth;
+  /* Anchor jumps clear the fixed pill header instead of sliding under it. */
+  scroll-padding-top: 6rem;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -125,6 +181,14 @@ body {
   html {
     scroll-behavior: auto;
   }
+  /* Every transition on the site collapses to an instant state change. */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
   .animate-on-scroll-hidden {
     opacity: 1;
     transform: none;
@@ -135,6 +199,14 @@ body {
   }
   .animate-marquee {
     animation: none !important;
+  }
+  .animate-hero-drift {
+    animation: none !important;
+  }
+  /* Colour and border feedback stays; only the movement is dropped. */
+  .card-lift:hover {
+    transform: none;
+    box-shadow: none;
   }
 }
 

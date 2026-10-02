@@ -82,11 +82,11 @@ export function ButtonLink({
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold tracking-wide transition duration-300 ${styles} ${className}`}
+      className={`group inline-flex items-center justify-center gap-2 rounded-full px-8 py-4 text-sm font-bold tracking-wide transition duration-300 ease-gentle hover:-translate-y-0.5 active:translate-y-0 ${styles} ${className}`}
     >
       {children}
       <i
-        className="fa-solid fa-arrow-right -rotate-45 text-[10px] transition-transform duration-300 group-hover:rotate-0"
+        className="fa-solid fa-arrow-right -rotate-45 text-[10px] transition-transform duration-300 ease-gentle group-hover:rotate-0"
         aria-hidden="true"
       />
     </Link>
@@ -123,19 +123,19 @@ export function ImageCard({
         alt={alt}
         fill
         sizes={sizes}
-        className="object-cover transition-transform duration-700 group-hover:scale-110"
+        className="object-cover transition-transform duration-700 ease-gentle group-hover:scale-110"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
       <div className="absolute bottom-8 left-8 text-white">
         <h3 className="mb-2 text-2xl font-bold uppercase">{title}</h3>
         {description ? (
-          <p className="max-w-xs text-sm text-gray-200 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <p className="max-w-xs text-sm text-gray-200 opacity-0 transition-opacity duration-300 ease-gentle group-hover:opacity-100">
             {description}
           </p>
         ) : null}
       </div>
       {children}
-      <span className="absolute bottom-8 right-8 flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent text-black transition group-hover:scale-110">
+      <span className="absolute bottom-8 right-8 flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent text-black transition-transform duration-300 ease-gentle group-hover:scale-110">
         <i className="fa-solid fa-arrow-right" aria-hidden="true" />
       </span>
     </Link>
@@ -239,7 +239,7 @@ export function PageHero({
           <SectionLabel label={label} tone="dark" />
         </Reveal>
         <Reveal delay={80}>
-          <h1 className="mt-4 max-w-4xl text-5xl font-black leading-[0.95] tracking-tighter md:text-7xl">
+          <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[0.95] tracking-tighter sm:text-5xl md:text-7xl">
             {title}
           </h1>
         </Reveal>

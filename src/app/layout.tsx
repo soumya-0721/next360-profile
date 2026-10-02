@@ -1,8 +1,9 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { SEO_KEYWORDS_CONFIRMED, SITE_URL, organizationJsonLd } from "@/lib/seo";
 import { company } from "@/lib/site";
 
@@ -34,7 +35,6 @@ export const metadata: Metadata = {
   description:
     "Next360 builds digital commerce, business technology, AI, infrastructure, advertising and growth solutions in Hyderabad. Flagship: Next360 Organic. Talk to us.",
   keywords: [...SEO_KEYWORDS_CONFIRMED],
-  themeColor: "#0f0f0f",
   openGraph: {
     type: "website",
     siteName: company.name,
@@ -50,6 +50,17 @@ export const metadata: Metadata = {
       "Next360 builds digital commerce, business technology, AI, infrastructure, advertising and growth solutions. Flagship: Next360 Organic.",
   },
   robots: { index: true, follow: true, "max-image-preview": "large" },
+};
+
+/*
+  themeColor belongs to the viewport export in the App Router. Leaving it in
+  metadata made Next warn on every route, because the root layout metadata
+  merges into all of them.
+*/
+export const viewport: Viewport = {
+  themeColor: "#0f0f0f",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -80,6 +91,7 @@ export default function RootLayout({
         <Header />
         <main id="main">{children}</main>
         <Footer />
+        <WhatsAppFab />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}

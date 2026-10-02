@@ -83,12 +83,15 @@ type PageSeo = {
   /* 140-160 chars, keyword in the first 30, ends with a soft CTA. */
   description: string;
   keywords: readonly string[];
+  /* Short eyebrow shown on the generated OG card. */
+  label?: string;
 };
 
 const HYDERABAD_CTA = "Based in Hyderabad, Telangana.";
 
 export const pageSeo: Record<string, PageSeo> = {
   "/": {
+    label: "Digital Commerce · AI · Infrastructure",
     title: "Agritech & IT Services, Hyderabad",
     description: `Next360 builds digital commerce, business technology, AI and computer vision, infrastructure and growth solutions. Flagship: Next360 Organic. ${HYDERABAD_CTA} Talk to us.`,
     keywords: [
@@ -100,12 +103,14 @@ export const pageSeo: Record<string, PageSeo> = {
     ],
   },
   "/about": {
+    label: "Company Profile",
     title: "About: Company Profile & Structure",
     description:
       "Who Next360 is, how it is structured, and its thirteen-part company profile. A technology organization across six technology domains. Learn more.",
     keywords: ["Next360", "company profile", "Agritech", "IT Services"],
   },
   "/agritech": {
+    label: "Agritech",
     title: "Agritech: Organic Products, Commerce",
     description:
       "Agriculture technology, organic products, digital commerce, supply chains and market access. Next360 Organic is the flagship initiative. Explore more.",
@@ -119,6 +124,7 @@ export const pageSeo: Record<string, PageSeo> = {
     ],
   },
   "/it-services": {
+    label: "IT Services",
     title: "IT Services: Software & Support",
     description:
       "Software development, backend engineering, enterprise software, IT infrastructure, support and managed technology services. Request a consultation.",
@@ -130,6 +136,7 @@ export const pageSeo: Record<string, PageSeo> = {
     ],
   },
   "/organic": {
+    label: "Flagship Venture",
     title: "India's Certified Organic Marketplace",
     description:
       "India's first certified organic marketplace: verification-first trade in organic products with NPOP and Jaivik Bharat traceability. Explore more.",
@@ -144,6 +151,7 @@ export const pageSeo: Record<string, PageSeo> = {
     ],
   },
   "/projects": {
+    label: "Proven Projects",
     title: "Projects: Proven Deployments",
     description:
       "Ten proven Next360 projects and deployments: Mallaram Digital Village, ORR CCTV monitoring, facial recognition and more. Browse the work.",
@@ -156,6 +164,7 @@ export const pageSeo: Record<string, PageSeo> = {
     ],
   },
   "/slick": {
+    label: "Sub-company",
     title: "SLICK Technologies by Next360",
     description:
       "SLICK Technologies, a Next360 sub-company building its own software products: SlickCode, Let's Connect, SlickSEO, Slixo and Organize. See the products.",
@@ -169,12 +178,14 @@ export const pageSeo: Record<string, PageSeo> = {
     ],
   },
   "/capabilities": {
+    label: "Capabilities",
     title: "Capabilities: Six Technology Domains",
     description:
       "What Next360 delivers across digital commerce, business technology, AI and computer vision, infrastructure, advertising and growth. See how we deliver.",
     keywords: ["Agritech", "IT Services", "managed technology services"],
   },
   "/contact": {
+    label: "Contact",
     title: "Contact Next360 in Hyderabad",
     description:
       "Contact Next360 for the company profile, Agritech and IT Services enquiries. Email office@next360.in, call +91-9989163332, Madhapur, Hyderabad. Reach out.",
@@ -198,6 +209,13 @@ export const SEO_ROUTES = [
 export function metadataFor(path: string): Metadata {
   const page = pageSeo[path] ?? pageSeo["/"]!;
   const canonical = SITE_URL ? { canonical: `${SITE_URL}${path}` } : undefined;
+  /*
+    Generated per route so each share preview describes its own page. Falls
+    back to the local hero photograph when SITE_URL is not set yet (local dev).
+  */
+  const ogImage = SITE_URL
+    ? `${SITE_URL}/og?title=${encodeURIComponent(page.title)}&label=${encodeURIComponent(page.label ?? "Next360")}`
+    : "/images/hero-farm.jpg";
   return {
     title: page.title,
     description: page.description,
@@ -210,13 +228,14 @@ export function metadataFor(path: string): Metadata {
       title: page.title,
       description: page.description,
       ...(SITE_URL
-        ? { url: `${SITE_URL}${path}`, images: [`${SITE_URL}/images/hero-farm.jpg`] }
+        ? { url: `${SITE_URL}${path}`, images: [{ url: ogImage, width: 1200, height: 630, alt: page.title }] }
         : {}),
     },
     twitter: {
       card: "summary_large_image",
       title: page.title,
       description: page.description,
+      ...(SITE_URL ? { images: [ogImage] } : {}),
     },
     robots: { index: true, follow: true, "max-image-preview": "large" },
   };

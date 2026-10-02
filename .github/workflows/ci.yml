@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# Cancel superseded runs on the same branch.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: typecheck, lint, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Lint
+        run: npm run lint -- --max-warnings=0
+
+      - name: Production build
+        run: npm run build
+
+      - name: Verify contact endpoint rejects bad input
+        # Guards the one route that talks to the outside world.
+        run: |
+          npm run start -- --port 3110 &
+          for i in $(seq 1 30); do
+            curl -sf http://localhost:3110/ > /dev/null && break
+            sleep 1
+          done
+          status=$(curl -s -o /dev/null -w '%{http_code}' \
+            -X POST http://localhost:3110/api/contact \
+            -H 'Content-Type: application/json' \
+            -d '{"email":"not-an-email"}')
+          if [ "$status" != "422" ]; then
+            echo "Expected 422 for invalid payload, got $status"
+            exit 1
+          fi
+          echo "Contact endpoint validation OK (422)"

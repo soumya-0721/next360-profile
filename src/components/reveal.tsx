@@ -6,6 +6,8 @@ type RevealProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  /** Override the default 800ms rise. Hero entrances run at 700ms. */
+  duration?: number;
   as?: "div" | "section" | "li" | "article" | "header";
 };
 
@@ -20,6 +22,7 @@ export function Reveal({
   children,
   className = "",
   delay = 0,
+  duration,
   as = "div",
 }: RevealProps) {
   const ref = useRef<HTMLElement | null>(null);
@@ -52,6 +55,10 @@ export function Reveal({
 
   const Tag = as;
 
+  const style: { transitionDelay?: string; transitionDuration?: string } = {};
+  if (delay) style.transitionDelay = `${delay}ms`;
+  if (duration) style.transitionDuration = `${duration}ms`;
+
   return (
     <Tag
       ref={ref as never}
@@ -59,7 +66,7 @@ export function Reveal({
       className={`${
         visible ? "animate-on-scroll-visible" : "animate-on-scroll-hidden"
       } ${className}`}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
+      style={delay || duration ? style : undefined}
     >
       {children}
     </Tag>

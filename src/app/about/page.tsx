@@ -161,7 +161,7 @@ export default function AboutPage() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {technologyDomains.map((domain, i) => (
             <Reveal key={domain.name} delay={i * 70}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-7 transition hover:border-brand-accent">
+              <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-7 card-lift hover:border-brand-accent">
                 <div className="flex items-baseline justify-between">
                   <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
                     Domain {domain.index}
@@ -283,7 +283,7 @@ export default function AboutPage() {
           <ol className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {deliverySteps.map((step, i) => (
               <Reveal key={step.no} delay={i * 70} as="li">
-                <div className="h-full overflow-hidden rounded-3xl border border-gray-800 bg-[#111] transition hover:border-brand-accent">
+                <div className="h-full overflow-hidden rounded-3xl border border-gray-800 bg-[#111] card-lift hover:border-brand-accent">
                   <div className="relative h-36">
                     <Image
                       src={step.image}

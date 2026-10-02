@@ -78,7 +78,7 @@ export default function AgritechPage() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {agritech.items.map((item, i) => (
             <Reveal key={item} delay={i * 60}>
-              <div className="flex h-full items-start gap-4 rounded-[2rem] bg-gray-100 p-7 transition hover:bg-brand-accent">
+              <div className="flex h-full items-start gap-4 rounded-[2rem] bg-gray-100 p-7 card-lift hover:bg-brand-accent">
                 <span className="font-mono text-xs font-bold text-gray-500">
                   {String(i + 1).padStart(2, "0")}
                 </span>

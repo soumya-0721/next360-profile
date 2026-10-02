@@ -35,3 +35,7 @@ yarn-error.log*
 
 # local dev harness (not part of the site)
 /scripts/
+
+# generated deliverables (kept out of git; published via GitHub Releases)
+*.pdf
+/*.html

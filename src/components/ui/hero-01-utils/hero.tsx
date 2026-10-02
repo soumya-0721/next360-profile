@@ -2,6 +2,7 @@ import { ArrowRight, BadgeCheck, Sprout } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { Reveal } from "@/components/reveal";
 import { Button } from "@/components/ui/button";
 import { company, photos } from "@/lib/site";
 
@@ -53,7 +54,7 @@ export default function HeroSection({
           fill
           priority
           sizes="100vw"
-          className="object-cover"
+          className="object-cover animate-hero-drift"
         />
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
@@ -61,75 +62,88 @@ export default function HeroSection({
 
       <div className="relative z-10 mx-auto w-full max-w-7xl px-6 pb-24 pt-36">
         <div className="max-w-3xl">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 py-1.5 pl-2 pr-4 shadow-lg backdrop-blur-md">
-            <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-accent text-[10px] font-bold text-brand-dark">
-              360
-            </span>
-            <span className="text-xs font-bold uppercase tracking-wide text-white">
-              Digital Commerce + AI + Infrastructure
-            </span>
-          </div>
-
-          <h1 className="mb-6 text-6xl font-black leading-[0.9] tracking-tighter text-white drop-shadow-xl lg:text-8xl">
-            BUILDING
-            <br />
-            <span className="bg-gradient-to-r from-brand-accent to-brand-green bg-clip-text text-transparent">
-              TECHNOLOGY.
-            </span>
-          </h1>
-
-          <p className="mb-4 max-w-xl text-xl font-bold leading-relaxed text-white drop-shadow-md">
-            {company.tagline}
-          </p>
-          <p className="mb-10 max-w-xl text-lg font-medium leading-relaxed text-gray-200 drop-shadow-md">
-            {company.heroLede}
-          </p>
-
-          <div className="mb-12 flex flex-col gap-4 sm:flex-row">
-            <Button
-              asChild
-              size="lg"
-              className="rounded-full bg-brand-accent px-8 py-4 font-bold text-black hover:bg-brand-green"
-            >
-              <Link href="/organic">
-                <Sprout className="mr-1 h-4 w-4" aria-hidden="true" />
-                See the flagship project
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="rounded-full border-white/20 bg-white/10 px-8 py-4 font-bold text-white backdrop-blur-md hover:bg-white hover:text-black"
-            >
-              <Link href="/contact">
-                Request Company Profile
-                <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
-              </Link>
-            </Button>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex -space-x-3">
-              {avatars.slice(0, 4).map((avatar, i) => (
-                <Image
-                  key={`${avatar.image}-${i}`}
-                  src={avatar.image}
-                  alt={avatar.name ?? `Next360 network member ${i + 1}`}
-                  width={40}
-                  height={40}
-                  className="h-10 w-10 rounded-full border-2 border-white object-cover"
-                />
-              ))}
+          <Reveal duration={700}>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 py-1.5 pl-2 pr-4 shadow-lg backdrop-blur-md">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-brand-accent text-[10px] font-bold text-brand-dark">
+                360
+              </span>
+              <span className="text-xs font-bold uppercase tracking-wide text-white">
+                Digital Commerce + AI + Infrastructure
+              </span>
             </div>
-            <p className="flex items-center gap-2 text-sm font-medium text-gray-200">
-              <BadgeCheck
-                className="h-4 w-4 text-brand-accent"
-                aria-hidden="true"
-              />
-              {company.team.extended} professionals across the extended network
+          </Reveal>
+
+          <Reveal duration={700} delay={120}>
+            <h1 className="mb-6 text-5xl font-black leading-[0.9] tracking-tighter text-white drop-shadow-xl sm:text-6xl lg:text-8xl">
+              BUILDING
+              <br />
+              <span className="bg-gradient-to-r from-brand-accent to-brand-green bg-clip-text text-transparent">
+                TECHNOLOGY.
+              </span>
+            </h1>
+          </Reveal>
+
+          <Reveal duration={700} delay={280}>
+            <p className="mb-4 max-w-xl text-xl font-bold leading-relaxed text-white drop-shadow-md">
+              {company.tagline}
             </p>
-          </div>
+          </Reveal>
+          <Reveal duration={700} delay={360}>
+            <p className="mb-10 max-w-xl text-lg font-medium leading-relaxed text-gray-200 drop-shadow-md">
+              {company.heroLede}
+            </p>
+          </Reveal>
+
+          <Reveal duration={700} delay={460}>
+            <div className="mb-12 flex flex-col gap-4 sm:flex-row">
+              <Button
+                asChild
+                size="lg"
+                className="rounded-full bg-brand-accent px-8 py-4 font-bold text-black transition duration-300 ease-gentle hover:-translate-y-0.5 hover:bg-brand-green active:translate-y-0"
+              >
+                <Link href="/organic">
+                  <Sprout className="mr-1 h-4 w-4" aria-hidden="true" />
+                  See the flagship project
+                </Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                variant="outline"
+                className="rounded-full border-white/20 bg-white/10 px-8 py-4 font-bold text-white backdrop-blur-md transition duration-300 ease-gentle hover:-translate-y-0.5 hover:bg-white hover:text-black active:translate-y-0"
+              >
+                <Link href="/contact">
+                  Request Company Profile
+                  <ArrowRight className="ml-1 h-4 w-4" aria-hidden="true" />
+                </Link>
+              </Button>
+            </div>
+          </Reveal>
+
+          <Reveal duration={700} delay={560}>
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex -space-x-3">
+                {avatars.slice(0, 4).map((avatar, i) => (
+                  <Image
+                    key={`${avatar.image}-${i}`}
+                    src={avatar.image}
+                    alt={avatar.name ?? `Next360 network member ${i + 1}`}
+                    width={40}
+                    height={40}
+                    className="h-10 w-10 rounded-full border-2 border-white object-cover"
+                  />
+                ))}
+              </div>
+              <p className="flex items-center gap-2 text-sm font-medium text-gray-200">
+                <BadgeCheck
+                  className="h-4 w-4 text-brand-accent"
+                  aria-hidden="true"
+                />
+                {company.team.extended} professionals across the extended
+                network
+              </p>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>

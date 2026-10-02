@@ -2,7 +2,11 @@
 
 import { useState, type FormEvent } from "react";
 
-type Status = "idle" | "loading" | "success" | "error";
+import { company } from "@/lib/site";
+
+type Status = "idle" | "loading" | "success" | "error" | "undelivered";
+
+const telHref = `tel:${company.contact.phone.replace(/[^+\d]/g, "")}`;
 
 const topics = [
   "Company profile",
@@ -68,6 +72,21 @@ export function ContactForm() {
 
       if (!res.ok) throw new Error(`Request failed: ${res.status}`);
 
+      /*
+        delivery:false means the server validated the enquiry but has no mail
+        provider configured, so nothing actually reached an inbox. Say that
+        plainly and point at the direct contact details instead of thanking
+        the visitor for a message nobody received (antislop R-26).
+      */
+      const body = (await res.json().catch(() => null)) as {
+        delivered?: boolean;
+      } | null;
+
+      if (body && body.delivered === false) {
+        setStatus("undelivered");
+        return;
+      }
+
       setStatus("success");
       form.reset();
       setTopic(topics[0]!);
@@ -77,6 +96,48 @@ export function ContactForm() {
         "The message could not be sent. Please try again or use the contact details listed.",
       );
     }
+  }
+
+  if (status === "undelivered") {
+    return (
+      <div
+        role="status"
+        className="rounded-[2rem] border border-amber-300 bg-amber-50 p-8 sm:p-10"
+      >
+        <span className="text-xs font-bold uppercase tracking-widest text-amber-700">
+          Not delivered
+        </span>
+        <h2 className="mt-4 text-3xl font-black tracking-tight">
+          We could not send this yet.
+        </h2>
+        <p className="mt-3 max-w-md text-sm leading-relaxed text-gray-700">
+          Your message was accepted but email delivery is not active on the site
+          right now, so it did not reach us. Please email or call us directly
+          and we will respond.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href={`mailto:${company.contact.email}`}
+            className="inline-flex min-h-11 items-center rounded-full bg-black px-5 text-sm font-bold text-white"
+          >
+            {company.contact.email}
+          </a>
+          <a
+            href={telHref}
+            className="inline-flex min-h-11 items-center rounded-full border border-gray-300 px-5 text-sm font-bold transition hover:border-black"
+          >
+            Call us
+          </a>
+        </div>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-6 inline-flex min-h-11 items-center rounded-full border border-gray-300 px-5 text-sm font-bold transition hover:border-black"
+        >
+          Try again
+        </button>
+      </div>
+    );
   }
 
   if (status === "success") {
@@ -248,7 +309,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-accent px-7 text-sm font-bold text-black transition hover:bg-brand-green hover:text-white disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand-accent px-7 text-sm font-bold text-black transition duration-300 ease-gentle hover:-translate-y-0.5 hover:bg-brand-green hover:text-white active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-60"
         >
           {status === "loading" ? "Sending..." : "Send enquiry"}
         </button>

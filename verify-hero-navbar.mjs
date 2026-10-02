@@ -170,12 +170,49 @@ for (const vp of VIEWPORTS) {
   await cdp.send("Page.navigate", { url: ORIGIN + "/" });
   await sleep(3000);
 
-  /* Reveal animated content so nothing in the hero is measured as absent. */
-  await cdp.send("Runtime.evaluate", {
-    expression: `document.querySelectorAll(".animate-on-scroll-hidden")
-      .forEach((el) => el.classList.add("animate-on-scroll-visible")); "ok"`,
-  });
-  await sleep(700);
+  /*
+    Let the page reveal itself: IO + React state post-hydration is race-free,
+    whereas forcing the class can be reverted by a later hydration render
+    (which mid-screenshot fades elements out and poisons the pixel samples).
+    Wait until nothing in the measured zones is hidden and has stayed quiet
+    for 1.4s (longest hero reveal = delay 560ms + 700ms = 1260ms). Fallback:
+    force after 9s (slow dev hydration or content below the fold) and settle.
+  */
+  const countHidden = async () => {
+    const { result } = await cdp.send("Runtime.evaluate", {
+      expression: `document.querySelectorAll(
+        "section#home .animate-on-scroll-hidden, nav.fixed .animate-on-scroll-hidden"
+      ).length`,
+      returnByValue: true,
+    });
+    return result.value;
+  };
+  let settled = false;
+  const t0 = Date.now();
+  let prev = -1;
+  let lastChange = Date.now();
+  while (Date.now() - t0 < 9000) {
+    const n = await countHidden();
+    if (n !== prev) {
+      prev = n;
+      lastChange = Date.now();
+    }
+    if (n === 0 && Date.now() - lastChange > 1400) {
+      settled = true;
+      break;
+    }
+    await sleep(300);
+  }
+  if (!settled) {
+    await cdp.send("Runtime.evaluate", {
+      expression: `document.querySelectorAll(".animate-on-scroll-hidden")
+        .forEach((el) => {
+          el.classList.remove("animate-on-scroll-hidden");
+          el.classList.add("animate-on-scroll-visible");
+        }); "ok"`,
+    });
+    await sleep(1600);
+  }
 
   const { result } = await cdp.send("Runtime.evaluate", {
     expression: COLLECT,
@@ -197,6 +234,28 @@ for (const vp of VIEWPORTS) {
     Make the text invisible but keep every background, scrim, pill and blur
     exactly as rendered, then screenshot what is really behind the glyphs.
   */
+  /*
+    Two screenshots: A with text painted, B ghosted (text transparent).
+    The glyph mask is every pixel that differs between them, so the
+    background is sampled ONLY where this element's own glyphs sit — not at
+    rounded-rect corners, and not under nested gradient-clipped text (which
+    is unchanged by the ghost style and therefore never enters the mask).
+    The hero photo's slow drift animation is frozen for the pair, otherwise
+    every photo pixel diffs and floods the mask with moving-background
+    pixels.
+  */
+  await cdp.send("Runtime.evaluate", {
+    expression: `(function () {
+      const s = document.createElement("style");
+      s.id = "__freeze__";
+      s.textContent = ".animate-hero-drift { animation-play-state: paused !important; }";
+      document.head.appendChild(s);
+      return "frozen";
+    })()`,
+  });
+  await sleep(250);
+  const shotA = await cdp.send("Page.captureScreenshot", { format: "png" });
+
   await cdp.send("Runtime.evaluate", {
     expression: `(function () {
       const s = document.createElement("style");
@@ -211,7 +270,8 @@ for (const vp of VIEWPORTS) {
   const shot = await cdp.send("Page.captureScreenshot", { format: "png" });
 
   await cdp.send("Runtime.evaluate", {
-    expression: `document.getElementById("__ghost__")?.remove(); "restored"`,
+    expression: `document.getElementById("__ghost__")?.remove();
+      document.getElementById("__freeze__")?.remove(); "restored"`,
   });
   await sleep(200);
 
@@ -227,41 +287,53 @@ for (const vp of VIEWPORTS) {
     };
     const boxes = __BOXES__;
     const b64 = "__B64__";
-    return new Promise((resolve) => {
+    const a64 = "__A64__";
+    const load = (data) => new Promise((res, rej) => {
       const img = new Image();
-      img.onload = () => {
+      img.onload = () => res(img);
+      img.onerror = rej;
+      img.src = "data:image/png;base64," + data;
+    });
+    return (async () => {
+      const [imgA, imgB] = await Promise.all([load(a64), load(b64)]);
+      const px = (img) => {
         const c = document.createElement("canvas");
-        c.width = img.naturalWidth;
-        c.height = img.naturalHeight;
+        c.width = img.naturalWidth; c.height = img.naturalHeight;
         const x = c.getContext("2d", { willReadFrequently: true });
         x.drawImage(img, 0, 0);
-        const out = boxes.map((b) => {
-          const rx = Math.max(0, b.rect.x), ry = Math.max(0, b.rect.y);
-          const rw = Math.min(b.rect.w, c.width - rx), rh = Math.min(b.rect.h, c.height - ry);
-          if (rw <= 0 || rh <= 0) return { text: b.text, minL: null, maxL: null };
-          const d = x.getImageData(rx, ry, rw, rh).data;
-          let minL = Infinity, maxL = -Infinity;
-          const step = Math.max(1, Math.floor(Math.sqrt((rw * rh) / 5000)));
-          for (let yy = 0; yy < rh; yy += step) {
-            for (let xx = 0; xx < rw; xx += step) {
-              const i = (yy * rw + xx) * 4;
-              const l = lum([d[i], d[i+1], d[i+2]]);
-              if (l < minL) minL = l;
-              if (l > maxL) maxL = l;
-            }
-          }
-          return { text: b.text, minL, maxL };
-        });
-        resolve(JSON.stringify(out));
+        return x.getImageData(0, 0, c.width, c.height);
       };
-      img.onerror = () => resolve(JSON.stringify([]));
-      img.src = "data:image/png;base64," + b64;
-    });
+      const A = px(imgA), B = px(imgB);
+      const out = boxes.map((b) => {
+        const rx = Math.max(0, b.rect.x), ry = Math.max(0, b.rect.y);
+        const rw = Math.min(b.rect.w, B.width - rx), rh = Math.min(b.rect.h, B.height - ry);
+        if (rw <= 0 || rh <= 0) return { text: b.text, minL: null, maxL: null };
+        let minL = Infinity, maxL = -Infinity, mask = 0;
+        const step = Math.max(1, Math.floor(Math.sqrt((rw * rh) / 5000)));
+        for (let yy = 0; yy < rh; yy += step) {
+          for (let xx = 0; xx < rw; xx += step) {
+            const i = ((ry + yy) * B.width + (rx + xx)) * 4;
+            const diff = Math.abs(A.data[i] - B.data[i])
+              + Math.abs(A.data[i+1] - B.data[i+1])
+              + Math.abs(A.data[i+2] - B.data[i+2]);
+            if (diff <= 12) continue; // background in both shots — not a glyph
+            mask++;
+            const l = lum([B.data[i], B.data[i+1], B.data[i+2]]);
+            if (l < minL) minL = l;
+            if (l > maxL) maxL = l;
+          }
+        }
+        if (mask < 8) return { text: b.text, minL: null, maxL: null, noMask: mask };
+        return { text: b.text, minL, maxL, mask };
+      });
+      return JSON.stringify(out);
+    })();
   })()`;
 
   const expression = runSample
     .replace("__BOXES__", JSON.stringify(normalized))
-    .replace("__B64__", shot.data);
+    .replace("__B64__", shot.data)
+    .replace("__A64__", shotA.data);
 
   const { result: sampleRes, exceptionDetails } = await scdp.send(
     "Runtime.evaluate",

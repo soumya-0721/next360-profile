@@ -97,7 +97,7 @@ export default function ItServicesPage() {
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {itServices.items.map((item, i) => (
             <Reveal key={item} delay={i * 40}>
-              <div className="flex h-full items-center gap-4 rounded-[1.5rem] border border-gray-200 bg-white px-6 py-5 transition hover:border-brand-accent">
+              <div className="flex h-full items-center gap-4 rounded-[1.5rem] border border-gray-200 bg-white px-6 py-5 card-lift hover:border-brand-accent">
                 <span className="font-mono text-xs font-bold text-gray-400">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -122,7 +122,7 @@ export default function ItServicesPage() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {deliveryAreas.map((area, i) => (
             <Reveal key={area.title} delay={i * 70}>
-              <div className="flex h-full flex-col rounded-[2rem] bg-gray-100 p-8 transition hover:bg-brand-accent">
+              <div className="flex h-full flex-col rounded-[2rem] bg-gray-100 p-8 card-lift hover:bg-brand-accent">
                 <div className="flex items-center justify-between">
                   <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white">
                     <i className={`${area.icon} text-black`} aria-hidden="true" />

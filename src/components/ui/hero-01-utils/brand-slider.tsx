@@ -8,6 +8,8 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import { Reveal } from "@/components/reveal";
+
 export type BrandList = {
   name: string;
   image?: string;
@@ -52,12 +54,15 @@ export default function BrandSlider({
           Six domains · One delivery team
         </p>
         <ul className="flex flex-wrap items-center justify-center gap-3">
-          {items.map((brand) => {
+          {items.map((brand, i) => {
             const Icon =
               brand.icon ?? DOMAIN_ICONS[brand.name] ?? TrendingUp;
             return (
-              <li
+              <Reveal
                 key={brand.name}
+                as="li"
+                duration={650}
+                delay={i * 70}
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 text-sm font-semibold text-gray-200 backdrop-blur-md"
               >
                 <Icon
@@ -65,7 +70,7 @@ export default function BrandSlider({
                   aria-hidden="true"
                 />
                 {brand.name}
-              </li>
+              </Reveal>
             );
           })}
         </ul>

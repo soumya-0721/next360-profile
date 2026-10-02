@@ -133,7 +133,7 @@ export default function ProjectsPage() {
           {others.map((project, i) => (
             <Reveal key={project.slug} delay={i * 50}>
               <div
-                className={`rounded-[2rem] border bg-white p-8 transition hover:border-brand-accent ${
+                className={`rounded-[2rem] border bg-white p-8 card-lift hover:border-brand-accent ${
                   project.confirmed
                     ? "border-gray-200"
                     : "border-dashed border-gray-300"
@@ -157,7 +157,7 @@ export default function ProjectsPage() {
                   {fieldRows(project).map((row) => (
                     <div
                       key={row.label}
-                      className="grid grid-cols-[9rem_1fr] items-baseline gap-3"
+                      className="grid grid-cols-1 gap-1 min-[420px]:grid-cols-[9rem_1fr] min-[420px]:gap-3"
                     >
                       <dt className="text-xs font-bold uppercase tracking-wider text-gray-400">
                         {row.label}

@@ -50,7 +50,7 @@ export default function CapabilitiesPage() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {technologyDomains.map((group, i) => (
             <Reveal key={group.name} delay={i * 60}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-8 transition hover:border-brand-accent">
+              <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-8 card-lift hover:border-brand-accent">
                 <div className="flex items-center justify-between">
                   <span className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-accent">
                     <i className={`${group.icon} text-sm text-black`} aria-hidden="true" />

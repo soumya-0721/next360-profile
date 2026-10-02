@@ -46,12 +46,12 @@ export function Header() {
   const isActive = (href: string) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-  return (
-    <nav className="fixed top-0 z-50 w-full px-4 py-4 transition-all duration-300 md:px-6">
+  return (    <nav className="fixed top-0 z-50 w-full px-4 py-4 transition-all duration-300 ease-smooth md:px-6">
       <div
-        className={`mx-auto flex max-w-7xl items-center justify-between rounded-full bg-white/90 px-6 shadow-lg backdrop-blur-md transition-all duration-300 ${
+        className={`mx-auto flex max-w-7xl items-center justify-between rounded-full bg-white/90 px-6 shadow-lg backdrop-blur-md transition-all duration-300 ease-smooth ${
           scrolled ? "py-2" : "py-3"
-        }`}
+        }`
+      }
       >
         {/* Logo */}
         <Link
@@ -117,29 +117,44 @@ export function Header() {
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <i
-            className={`fa-solid ${open ? "fa-xmark" : "fa-bars"} text-xl`}
+            className={`fa-solid ${open ? "fa-xmark" : "fa-bars"} text-xl transition-transform duration-300 ease-smooth`}
             aria-hidden="true"
           />
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/*
+        Mobile menu: stays mounted so it can animate both ways. visibility
+        (not display) hides it, which keeps it out of the tab order and the
+        accessibility tree while closed. Links ripple in with staggered
+        delays; all of it collapses to instant under prefers-reduced-motion
+        through the global transition override.
+      */}
       <div
         id="mobile-menu"
-        hidden={!open}
-        className="animate-fade-in-up absolute left-4 right-4 top-20 z-40 rounded-2xl bg-white p-6 shadow-xl md:hidden"
+        aria-hidden={!open}
+        className={`absolute left-4 right-4 top-20 z-40 rounded-2xl bg-white p-6 shadow-xl transition-all duration-300 ease-smooth md:hidden ${
+          open
+            ? "visible translate-y-0 scale-100 opacity-100"
+            : "invisible pointer-events-none -translate-y-2 scale-[0.97] opacity-0"
+        }`}
       >
         <nav className="flex flex-col gap-4" aria-label="Mobile">
-          {allRoutes.map((item) => (
+          {allRoutes.map((item, i) => (
             <Link
               key={item.href}
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
-              className={
+              style={{ transitionDelay: open ? `${80 + i * 40}ms` : "0ms" }}
+              className={`transition-all duration-300 ease-gentle ${
+                open
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-1 opacity-0"
+              } ${
                 isActive(item.href)
                   ? "font-semibold text-black"
-                  : "text-gray-600 transition hover:text-black"
-              }
+                  : "text-gray-600 hover:text-black"
+              }`}
             >
               {item.label}
             </Link>

@@ -103,7 +103,7 @@ export default function HomePage() {
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {technologyDomains.map((domain, i) => (
             <Reveal key={domain.name} delay={i * 60}>
-              <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-7 transition hover:border-brand-accent">
+              <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-7 card-lift hover:border-brand-accent">
                 <div className="flex items-center justify-between">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-accent">
                     <i className={`${domain.icon} text-sm text-black`} aria-hidden="true" />
@@ -156,7 +156,7 @@ export default function HomePage() {
                 Flagship venture
               </span>
 
-              <h2 className="mt-6 text-5xl font-black leading-[0.9] tracking-tighter md:text-7xl">
+              <h2 className="mt-6 text-4xl font-black leading-[0.9] tracking-tighter sm:text-5xl md:text-7xl">
                 NEXT360
                 <br />
                 <span className="bg-gradient-to-r from-brand-accent to-brand-green bg-clip-text text-transparent">
@@ -188,7 +188,7 @@ export default function HomePage() {
                 <ButtonLink href="/organic">Open the flagship page</ButtonLink>
                 <Link
                   href="/projects"
-                  className="inline-flex items-center justify-center rounded-full border border-white/25 px-8 py-4 text-sm font-bold tracking-wide text-white transition hover:bg-white hover:text-black"
+                  className="inline-flex items-center justify-center rounded-full border border-white/25 px-8 py-4 text-sm font-bold tracking-wide text-white transition duration-300 ease-gentle hover:-translate-y-0.5 hover:bg-white hover:text-black active:translate-y-0"
                 >
                   See all proven projects
                 </Link>
@@ -239,7 +239,7 @@ export default function HomePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {previewProjects.map((project, i) => (
             <Reveal key={project.slug} delay={i * 70}>
-              <div className="flex h-full min-h-[16rem] flex-col justify-between rounded-[2rem] border border-gray-200 bg-white p-7 transition hover:border-brand-accent">
+              <div className="flex h-full min-h-[16rem] flex-col justify-between rounded-[2rem] border border-gray-200 bg-white p-7 card-lift hover:border-brand-accent">
                 <span className="font-mono text-xs font-bold text-gray-400">
                   {String(i + 1).padStart(2, "0")}
                 </span>
@@ -285,7 +285,7 @@ export default function HomePage() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {slickProducts.map((product, i) => (
             <Reveal key={product.name} delay={i * 70}>
-              <div className="flex h-full flex-col rounded-[2rem] bg-gray-100 p-7 transition hover:bg-brand-accent">
+              <div className="flex h-full flex-col rounded-[2rem] bg-gray-100 p-7 card-lift hover:bg-brand-accent">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white">
                   <i className="fa-solid fa-cube text-sm text-black" aria-hidden="true" />
                 </span>
