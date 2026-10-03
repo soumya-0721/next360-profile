@@ -53,7 +53,6 @@
 
   --animate-fade-in-up: fadeInUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   --animate-spin-slow: spin 12s linear infinite;
-  --animate-marquee: marquee 45s linear infinite;
   /* Slow cinematic push-in on the hero photograph; clipped by the section. */
   --animate-hero-drift: heroDrift 24s cubic-bezier(0.16, 1, 0.3, 1) both;
 
@@ -77,14 +76,6 @@
     }
   }
 
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
-    to {
-      transform: translateX(-50%);
-    }
-  }
 }
 
 /* Reference global scrollbar */
@@ -195,9 +186,6 @@ body {
     transition: none;
   }
   .animate-spin-slow {
-    animation: none !important;
-  }
-  .animate-marquee {
     animation: none !important;
   }
   .animate-hero-drift {

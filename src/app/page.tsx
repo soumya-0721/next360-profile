@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import { MentorMarquee } from "@/components/mentor-marquee";
+import {
+  MentorPanels,
+  PartnerLogos,
+} from "@/components/mentors";
 import { Reveal } from "@/components/reveal";
 import {
   ButtonLink,
@@ -10,15 +13,12 @@ import {
   SectionLabel,
   SectionTitle,
 } from "@/components/ui";
-import BrandSlider from "@/components/ui/hero-01-utils/brand-slider";
 import HeroSection from "@/components/ui/hero-01-utils/hero";
 import { metadataFor } from "@/lib/seo";
 import {
   capabilityLists,
-  collaborators,
   collaboratorNote,
   company,
-  mentorship,
   organicDomains,
   photos,
   projects,
@@ -44,6 +44,22 @@ export const metadata = metadataFor("/");
 const previewProjects = projects
   .filter((project) => project.confirmed && !project.flagship)
   .slice(0, 4);
+
+/*
+  Domain name -> the projects that prove it. Built from project.domains so the
+  proof can never drift from the portfolio, and the cards stop restating their
+  own summary.
+*/
+const proofByDomain: Record<string, string[]> = {};
+const projectName: Record<string, string> = {};
+for (const project of projects) {
+  if (!project.confirmed) continue;
+  projectName[project.slug] = project.name;
+  for (const domain of project.domains) {
+    (proofByDomain[domain] ??= []).push(project.slug);
+  }
+}
+const proof: Record<string, string[]> = proofByDomain;
 
 export default function HomePage() {
   return (
@@ -73,16 +89,6 @@ export default function HomePage() {
               "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80&auto=format&fit=crop",
             name: "Network member",
           },
-        ]}
-      />
-      <BrandSlider
-        brandList={[
-          { name: "Digital Commerce" },
-          { name: "Business Technology" },
-          { name: "AI & Computer Vision" },
-          { name: "Digital Infrastructure" },
-          { name: "Digital Advertising" },
-          { name: "Digital Growth" },
         ]}
       />
 
@@ -116,20 +122,57 @@ export default function HomePage() {
                 <p className="mt-3 text-sm leading-relaxed text-gray-600">
                   {domain.summary}
                 </p>
-                <ul className="mt-4 space-y-2">
-                  {domain.items.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-3 text-sm leading-relaxed text-gray-600"
-                    >
-                      <span
-                        className="mt-2 h-1 w-1 shrink-0 rounded-full bg-brand-green"
-                        aria-hidden="true"
-                      />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
+                {/*
+                  Proof, not a restated summary. Each domain lists the shipped
+                  work that proves it, so the card carries evidence instead of
+                  repeating the sentence above in bullet form.
+                */}
+                <div className="mt-auto pt-6">
+                  {(() => {
+                    const slugs = proof[domain.name] ?? [];
+                    if (slugs.length === 0) {
+                      return (
+                        <>
+                          <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                            Deployments
+                          </p>
+                          <p className="mt-2 text-[13px] leading-snug text-gray-400">
+                            No deployments published in this domain yet.
+                          </p>
+                        </>
+                      );
+                    }
+                    return (
+                      <>
+                        <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                          Proven by
+                        </p>
+                        <ul className="mt-2 space-y-1.5">
+                          {slugs.map((slug) => (
+                            <li key={slug}>
+                              <Link
+                                href="/projects"
+                                className="group/proof inline-flex items-start gap-2 text-[13px] font-semibold leading-snug text-gray-700 hover:text-black"
+                              >
+                                <span
+                                  aria-hidden="true"
+                                  className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-brand-green"
+                                />
+                                {projectName[slug]}
+                                <span
+                                  aria-hidden="true"
+                                  className="transition-transform group-hover/proof:translate-x-0.5"
+                                >
+                                  &rarr;
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </>
+                    );
+                  })()}
+                </div>
               </div>
             </Reveal>
           ))}
@@ -197,26 +240,7 @@ export default function HomePage() {
           </div>
         </Reveal>
 
-        {/* The flagship gets the page's largest paired visuals. */}
-        <div className="mt-6 grid gap-6 md:grid-cols-2">
-          <Reveal>
-            <PhotoBand
-              src={photos.market}
-              alt="Illustrative photograph of a market stall selling fresh vegetables."
-              height="h-60 md:h-80"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </Reveal>
-          <Reveal delay={90}>
-            <PhotoBand
-              src={photos.produce}
-              alt="Illustrative photograph of fresh tomatoes and produce in baskets."
-              height="h-60 md:h-80"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </Reveal>
-        </div>
-      </section>
+        </section>
 
       {/* 5: proven projects, given full size */}
       <section id="projects" className="mx-auto max-w-7xl px-6 pb-20">
@@ -379,55 +403,21 @@ export default function HomePage() {
         </Reveal>
       </section>
 
-      {/* 7b: mentorship and strategic collaborators. */}
+      {/* 7b: mentorship panels and partner logos. */}
       <section id="partners" className="mx-auto max-w-7xl px-6 pb-20">
         <Reveal className="mb-8">
-          <MentorMarquee />
+          <MentorPanels />
         </Reveal>
-        <div className="grid gap-6 md:grid-cols-2">
-          <Reveal>
-            <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-8">
-              <SectionLabel label="Mentorship & Guidance" />
-              <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                Next360 benefits from guidance and mentorship from experienced
-                technology, business and startup professionals.
-              </p>
-              <ul className="mt-6 space-y-5">
-                {mentorship.map((entry) => (
-                  <li key={entry.name} className="border-t border-gray-100 pt-5">
-                    <h3 className="text-lg font-bold">{entry.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                      {entry.note}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
 
-          <Reveal delay={90}>
-            <div className="flex h-full flex-col rounded-[2rem] bg-gray-100 p-8">
-              <SectionLabel label="Strategic Collaborators" />
-              <p className="mt-4 text-sm leading-relaxed text-gray-600">
-                Next360 works with strategic collaborators and service partners
-                across technology, AI, sales and marketing.
-              </p>
-              <ul className="mt-6 space-y-5">
-                {collaborators.map((entry) => (
-                  <li key={entry.name} className="border-t border-gray-200 pt-5">
-                    <h3 className="text-lg font-bold">{entry.name}</h3>
-                    <p className="mt-2 text-sm leading-relaxed text-gray-600">
-                      {entry.note}
-                    </p>
-                  </li>
-                ))}
-              </ul>
-              <p className="mt-auto pt-6 text-sm leading-relaxed text-gray-600">
-                {collaboratorNote}
-              </p>
-            </div>
-          </Reveal>
-        </div>
+        <Reveal delay={60}>
+          <div className="mt-2">
+            <SectionLabel label="Strategic Collaborators" />
+            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-gray-600">
+              {collaboratorNote}
+            </p>
+            <PartnerLogos />
+          </div>
+        </Reveal>
       </section>
 
       {/* 8: team */}

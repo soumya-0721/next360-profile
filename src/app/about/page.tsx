@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { LeaderCard } from "@/components/leadership-card";
 import { Reveal } from "@/components/reveal";
 import {
   ButtonLink,
@@ -12,11 +13,14 @@ import {
 } from "@/components/ui";
 import { metadataFor } from "@/lib/seo";
 import {
+  academicCollaboration,
   company,
   companySnapshot,
   corporateStructure,
   deliverySteps,
-  photos,
+  leadership,
+  mentorship,
+  collaborators,
   profileArchitecture,
   technologyDomains,
 } from "@/lib/site";
@@ -48,7 +52,7 @@ const narrativeHierarchy = [
   "Six technology and business domains",
   "Next360 Organic Marketplace (flagship)",
   "Proven projects and deployments",
-  "SLICK Technologies",
+  "Slick Technologies",
 ] as const;
 
 export default function AboutPage() {
@@ -100,7 +104,7 @@ export default function AboutPage() {
 
         <Reveal delay={40}>
           <PhotoBand
-            src={photos.teamWork}
+            src="/images/team-work.jpg"
             alt="Illustrative photograph of colleagues collaborating at a laptop."
             className="mt-10"
           />
@@ -111,8 +115,8 @@ export default function AboutPage() {
             <p className="max-w-3xl text-sm leading-relaxed text-gray-500">
               Verified items today are {technologyDomains.length} technology and
               business domains, the flagship Next360 Organic Marketplace, a
-                portfolio of ten proven projects and deployments, the Slick
-                Technologies sub-company, and an extended network of{" "}
+              portfolio of ten proven projects and deployments, the Slick
+              Technologies sub-company, and an extended network of{" "}
               {company.team.extended} professionals including{" "}
               {company.team.developers} developers. Everything else publishes
               only once approved against the source supplied for the profile.
@@ -162,14 +166,9 @@ export default function AboutPage() {
           {technologyDomains.map((domain, i) => (
             <Reveal key={domain.name} delay={i * 70}>
               <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white p-7 card-lift hover:border-brand-accent">
-                <div className="flex items-baseline justify-between">
-                  <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
-                    Domain {domain.index}
-                  </span>
-                  <span className="font-mono text-xs text-gray-400">
-                    {domainHref[domain.name]}
-                  </span>
-                </div>
+                <span className="text-xs font-bold uppercase tracking-widest text-gray-400">
+                  Domain {domain.index}
+                </span>
                 <h3 className="mt-4 text-2xl font-bold">{domain.name}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-gray-600">
                   {domain.summary}
@@ -190,9 +189,15 @@ export default function AboutPage() {
                 </ul>
                 <Link
                   href={domainHref[domain.name]!}
-                  className="mt-auto pt-5 text-sm font-bold hover:text-brand-green-ink"
+                  className="group/link mt-auto inline-flex items-center gap-2 pt-5 text-sm font-bold hover:text-brand-green-ink"
                 >
-                  Open -&gt;
+                  Explore {domain.name}
+                  <span
+                    aria-hidden="true"
+                    className="transition-transform group-hover/link:translate-x-0.5"
+                  >
+                    &rarr;
+                  </span>
                 </Link>
               </div>
             </Reveal>
@@ -247,7 +252,7 @@ export default function AboutPage() {
         <Reveal delay={140}>
           <div className="mt-6 rounded-[2rem] bg-gray-100 p-8">
             <p className="text-xs font-bold uppercase tracking-widest text-gray-500">
-              Narrative hierarchy
+              How we are organised
             </p>
             <ol className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
               {narrativeHierarchy.map((step, i) => (
@@ -315,35 +320,83 @@ export default function AboutPage() {
 
       <section className="mx-auto max-w-7xl px-6 py-20">
         <Reveal>
-          <SectionLabel label="Corporate Profile" />
-          <div className="mt-3 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
-            <SectionTitle className="max-w-xl">
-              The full company profile, in thirteen parts.
-            </SectionTitle>
-            <ButtonLink href="/contact" variant="dark">
-              Request the document
-            </ButtonLink>
-          </div>
+          <SectionLabel label="Industry & Academic Collaboration" />
+          <SectionTitle className="mt-3 max-w-2xl">
+            Open to working with institutions.
+          </SectionTitle>
         </Reveal>
 
-        <ol className="mt-10 border-t border-gray-200">
-          {profileArchitecture.map((part, i) => (
-            <Reveal key={part.no} delay={Math.min(i * 35, 280)} as="li">
-              <div className="grid grid-cols-[auto_1fr] items-baseline gap-x-5 gap-y-1 border-b border-gray-200 py-4 transition-colors hover:bg-gray-50 sm:grid-cols-[auto_minmax(0,16rem)_1fr] sm:gap-x-8">
-                <span className="font-mono text-xs font-bold text-gray-400">
-                  {part.no}
-                </span>
-                <span className="text-base font-semibold">{part.title}</span>
-                <span className="col-span-2 text-sm leading-relaxed text-gray-500 sm:col-span-1">
-                  {part.note}
-                </span>
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {academicCollaboration.map((entry, i) => (
+            <Reveal key={entry.title} delay={i * 60}>
+              <div className="h-full rounded-[2rem] border border-gray-200 bg-white p-7">
+                <h3 className="text-lg font-bold">{entry.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                  {entry.note}
+                </p>
               </div>
             </Reveal>
           ))}
-        </ol>
+        </div>
+
+        <div className="mt-6 grid gap-6 md:grid-cols-2">
+          <Reveal>
+            <div className="h-full rounded-[2rem] border border-gray-200 bg-white p-7">
+              <SectionLabel label="Mentorship & Guidance" />
+              <ul className="mt-4 space-y-4">
+                {mentorship.map((entry) => (
+                  <li key={entry.name}>
+                    <h3 className="text-base font-bold">{entry.name}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                      {entry.org}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="h-full rounded-[2rem] bg-gray-100 p-7">
+              <SectionLabel label="Strategic Collaborators" />
+              <ul className="mt-4 space-y-4">
+                {collaborators.map((entry) => (
+                  <li key={entry.name}>
+                    <h3 className="text-base font-bold">{entry.name}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-gray-600">
+                      {entry.note}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
-      {/* Company snapshot: the owner's table, rendered as a definition list. */}
+      {/* Leadership. Sits before the snapshot because on a company profile the
+          first question a buyer asks is who is accountable for the work. */}
+      <section className="mx-auto max-w-7xl px-6 pb-20">
+        <Reveal>
+          <SectionLabel label="Leadership" />
+          <SectionTitle className="mt-3 max-w-2xl">
+            Who leads Next360.
+          </SectionTitle>
+        </Reveal>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {leadership.map((leader, i) => (
+            <Reveal key={leader.name} delay={i * 70}>
+              <LeaderCard
+                name={leader.name}
+                role={leader.role}
+                bio={leader.bio}
+                photo={leader.photo}
+              />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       <section className="mx-auto max-w-7xl px-6 pb-20">
         <Reveal>
           <SectionLabel label="Company Snapshot" />
@@ -373,6 +426,31 @@ export default function AboutPage() {
             </dl>
           </div>
         </Reveal>
+      </section>
+
+      <section className="mx-auto max-w-7xl px-6 pb-24">
+        <Reveal>
+          <SectionLabel label="Corporate Profile" />
+          <SectionTitle className="mt-3 max-w-2xl">
+            The thirteen-part document.
+          </SectionTitle>
+        </Reveal>
+        <ol className="mt-8 grid gap-2 sm:grid-cols-2">
+          {profileArchitecture.map((part) => (
+            <li
+              key={part.no}
+              className="flex items-baseline gap-4 border-b border-gray-100 py-3"
+            >
+              <span className="font-mono text-xs font-bold text-gray-400">
+                {part.no}
+              </span>
+              <span className="text-sm font-semibold">{part.title}</span>
+              <span className="ml-auto hidden text-[13px] text-gray-400 sm:inline">
+                {part.note}
+              </span>
+            </li>
+          ))}
+        </ol>
       </section>
 
       <section className="mx-auto max-w-7xl px-6 pb-24">

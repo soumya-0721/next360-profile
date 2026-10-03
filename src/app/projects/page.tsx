@@ -37,7 +37,7 @@ export default function ProjectsPage() {
   return (
     <>
       <PageHero
-        label="Section 06"
+        label="Proven Work"
         title={
           <>
             PROVEN

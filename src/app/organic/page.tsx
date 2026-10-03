@@ -13,7 +13,6 @@ import {
   organicDomains,
   photos,
   statusVocabulary,
-  TBC,
 } from "@/lib/site";
 
 export const metadata = metadataFor("/organic");
@@ -86,10 +85,9 @@ export default function OrganicPage() {
             Everything this initiative will explain.
           </SectionTitle>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-600">
-            Fourteen content blocks are specified for Next360 Organic. Blocks
-            without supplied detail are marked as coming soon below. No
+            Fourteen content blocks specify what this initiative covers. No
             metrics, users, revenue, market coverage or outcomes are stated
-            until they are verified.
+            anywhere on this page until they can be evidenced.
           </p>
         </Reveal>
 
@@ -107,19 +105,14 @@ export default function OrganicPage() {
                       <span className="font-medium text-gray-700">
                         {block.approved}
                       </span>
-                      {block.detail !== TBC ? (
-                        <span className="mt-1 block">
-                          Detail:{" "}
-                          <span className="font-semibold">{block.detail}</span>
-                        </span>
-                      ) : null}
+                      <span className="mt-2 block text-gray-500">
+                        {block.detail}
+                      </span>
                     </>
-                  ) : block.detail !== TBC ? (
-                    <span className="font-semibold text-gray-700">
+                  ) : (
+                    <span className="font-medium text-gray-700">
                       {block.detail}
                     </span>
-                  ) : (
-                    <span className="italic">Details coming soon.</span>
                   )}
                 </span>
               </div>
@@ -143,9 +136,9 @@ export default function OrganicPage() {
               ))}
             </div>
             <p className="mt-4 text-sm leading-relaxed text-gray-600">
-              Current status of Next360 Organic:{" "}
-              <span className="font-semibold text-black">To be published</span>.
-              Only the actual status will be published.
+              Status is published only when it is one of the words above, and
+              only once it is true. No figure is published for this initiative
+              until it can be evidenced.
             </p>
           </div>
         </Reveal>

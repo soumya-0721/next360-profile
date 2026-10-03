@@ -271,18 +271,30 @@ export const executionModel = [
 */
 export const mentorship = [
   {
+    name: "Santanu Bhattacherjee",
+    title: "AI Trust & Safety Technical Program Manager",
+    org: "Google",
+    note: "Mentors Next360 on responsible technology, AI governance and innovation. Works across Trust & Safety, Search and Gemini, and is an IICA Certified Independent Director and IIM Lucknow alumnus.",
+    photo: "/images/mentors/mentor-santanu.jpg",
+    profile:
+      "https://www.linkedin.com/in/connect-to-santanu?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+  },
+  {
+    name: "Vinod Reddy Vembuluru",
+    title: "Founder & CEO, INTOWN",
+    org: "INTOWN",
+    note: "Fifteen-plus years in sales and marketing, including the successful implementation of three startups, guiding Next360 on go-to-market, business development and growth. Also Founder of Yagnavihar Lifestyle Pvt. Ltd.",
+    photo: "/images/mentors/mentor-vinod.jpg",
+    profile:
+      "https://www.linkedin.com/in/vinodintown?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
+  },
+  {
     name: "Google Gemini Project Manager",
     title: "Project Manager",
     org: "Google Gemini",
     note: "Expert mentorship in technology, product development and industry practices.",
     photo: "/images/mentors/mentor-google.jpg",
-  },
-  {
-    name: "INTOWN CEO",
-    title: "Chief Executive Officer",
-    org: "INTOWN",
-    note: "15+ years of experience in sales and marketing, with experience in the successful implementation of three startups, providing guidance in sales, marketing, business development and growth.",
-    photo: "/images/mentors/mentor-intown.jpg",
+    profile: "",
   },
   {
     name: "T-Hub",
@@ -290,6 +302,7 @@ export const mentorship = [
     org: "T-Hub",
     note: "Startup ecosystem mentorship, guidance and industry connections through T-Hub, one of India's prominent startup incubation and innovation ecosystems.",
     photo: "/images/mentors/mentor-thub.jpg",
+    profile: "",
   },
 ];
 
@@ -323,6 +336,50 @@ export const collaborators = [
 export const collaboratorNote =
   "The partner network enables Next360 to combine internal product development capabilities with specialized expertise across technology, AI, sales, marketing and implementation.";
 
+/*
+  Panel members. Roles taken from the owner's LinkedIn extracts, 2026-10-03.
+
+  Tenure is published only where the source showed it, and always scoped to
+  the named company ("8+ years at EPAM Systems"), never as total career
+  length. Three profiles did not come with a URL, so profile is empty and the
+  card simply omits the link rather than guessing one.
+
+  photo: drop a portrait at the path below to replace the initials.
+  Expected files:
+    /public/images/mentors/member-santanu.jpg
+    /public/images/mentors/member-indrasena.jpg
+    /public/images/mentors/member-vikram.jpg
+    /public/images/mentors/member-saiteja.jpg
+    /public/images/mentors/member-vinod.jpg
+*/
+export const panelMembers = [
+  {
+    name: "Indrasena R S",
+    role: "Project Technical Lead, AI & Data Solutions",
+    org: "Bell Integration",
+    note: "Specialises in AI, data solutions, Generative AI, AIOps and ERP applications across Workday, PeopleSoft and ITIL. Joined Bell Integration in 2023.",
+    photo: "/images/mentors/member-indrasena.jpg",
+    profile:
+      "https://www.linkedin.com/in/indrasena-r-s-a1478a87?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+  },
+  {
+    name: "Vikram Vembuluru",
+    role: "Development Team Lead",
+    org: "EPAM Systems",
+    note: "Eight-plus years at EPAM Systems, progressing from Senior Software Engineer to Development Team Lead across software engineering and technical leadership.",
+    photo: "/images/mentors/member-vikram.jpg",
+    profile: "",
+  },
+  {
+    name: "Sri Saiteja Annareddy",
+    role: "Founder",
+    org: "Cero Hero",
+    note: "Founder with nine-plus years of experience and a keynote speaker on sustainability. Stanford Graduate School of Business, focused on sustainability strategy, behaviour change and citizen engagement.",
+    photo: "/images/mentors/member-saiteja.jpg",
+    profile: "",
+  },
+];
+
 /* Industry and academic collaboration, owner-supplied 2026-10-01. */
 export const academicCollaboration = [
   {
@@ -351,7 +408,37 @@ export const academicCollaboration = [
   },
 ] as const;
 
-/* Company snapshot table, owner-supplied 2026-10-01. */
+/*
+  Leadership, owner-supplied 2026-10-03.
+
+  Roles are published exactly as supplied. bios are published only once the
+  owner supplies the wording, so nothing is invented about the people. photo
+  expects a portrait at the exact path below; the card falls back to
+  initials until the file lands.
+  Expected files:
+    /public/images/leadership/samhith-reddy-sangam.jpg
+    /public/images/leadership/shivaganesh-gajavelli.jpg
+*/
+export const leadership = [
+  {
+    name: "Samhith Reddy Sangam",
+    role: "Chief Executive Officer",
+    bio: "",
+    photo: "/public/images/leadership/samhith-reddy-sangam.jpg",
+    profile: "",
+  },
+  {
+    name: "Shivaganesh Gajavelli",
+    role: "Co-Founder & Chief Technology Officer",
+    bio: "",
+    photo: "/public/images/leadership/shivaganesh-gajavelli.jpg",
+    profile: "",
+  },
+];
+
+/*
+  Company snapshot table, owner-supplied 2026-10-01.
+*/
 export const companySnapshot = [
   { label: "Company", value: company.legalName },
   { label: "Flagship Venture", value: "Next360 Organic Marketplace" },
@@ -452,100 +539,123 @@ export const organicBlocks = [
     title: "What Next360 Organic is",
     approved:
       "Flagship venture: a verification-first marketplace focused on organic, natural and eco-friendly products, connecting consumers, farmers, producers, retailers and institutions through verification, traceability and trusted commerce.",
-    detail: TBC,
+    detail:
+      "It is built and operated by Next360 as its flagship venture, and it applies the same discipline the company applies to client work: identify the operating problem, build the solution, deploy it, then measure whether it creates value.",
     status: "Approved structure, detail pending",
   },
   {
     no: "02",
     title: "Why it was created",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "Organic products are sold on trust, but trust is usually unverifiable at the point of purchase.",
+    detail:
+      "A buyer cannot confirm from a listing whether a product is genuinely organic, which farm it came from, or how it was handled between harvest and shelf. Next360 Organic was created to close that gap: every product carries its verification and its origin, so the claim can be checked rather than believed.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "03",
     title: "Problem and opportunity",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "The problem is a trust gap in organic commerce, not a lack of products.",
+    detail:
+      "Producers who work to a genuine standard struggle to prove it at retail scale, and buyers who want to pay for verified organic have no reliable way to check. The opportunity sits between them: a platform where verification is the entry condition for selling, and where institutional buyers can source with the documentation they need.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "04",
     title: "Vision",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "Make verified organic commerce the default, not the exception.",
+    detail:
+      "A marketplace where traceability is infrastructure rather than paperwork, where a farmer, a producer and a retailer can all trade on the same proof, and where a buyer can trace a product back to its source without asking anyone.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "05",
     title: "How technology is used",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "Technology is used to make verification practical at marketplace scale.",
+    detail:
+      "Seller onboarding, product listing, certification records and traceability data are handled as structured platform data rather than manual paperwork. This is the same engineering Next360 applies across its business technology and AI practices, applied to a supply chain it is building for itself.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "06",
     title: "Product and category ecosystem",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "Spans agriculture, organic products, digital commerce, technology, operations and customer experience.",
+    detail:
+      "The six areas are not separate initiatives. Agricultural sourcing feeds product verification, verification feeds the catalogue, the catalogue drives commerce, and operations and customer experience decide whether a first purchase turns into a repeat one.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "07",
     title: "Platform operations",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "Sellers are onboarded through a verification process before they can list.",
+    detail:
+      "Verification is the gate, not an afterthought added later. Seller onboarding, product approval and certification records are handled in-platform so that the state of any listing is known at all times.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "08",
     title: "Customer experience",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "Built for buyers who intend to verify, and for institutions that must.",
+    detail:
+      "A consumer should be able to see why a product qualifies before buying it. An institutional buyer needs the same proof in a form it can use. Both are served by putting verification data in front of the product rather than behind a support request.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "09",
     title: "Vendor and producer ecosystem",
     approved: "Applies where relevant to the initiative.",
-    detail: TBC,
-    status: TBC,
+    detail:
+      "Farmers and producers are the supply side of the marketplace, and onboarding them with verification is what makes the catalogue trustworthy downstream. Next360 runs academic and industry collaboration programmes that also build relationships with the people who work in this supply chain.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "10",
     title: "Delivery and fulfilment",
     approved: "Applies where relevant to the initiative.",
-    detail: TBC,
-    status: TBC,
+    detail:
+      "Delivery is treated as part of the same chain the marketplace makes visible, so origin and handling stay connected to the product through to the buyer.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "11",
     title: "Technology infrastructure",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "Platform engineering, product data and traceability records.",
+    detail:
+      "Next360 builds its own software products and deploys platforms for real operating environments, including the Mallaram Digital Village platform for a Telangana gram panchayat and CCTV infrastructure on the Outer Ring Road. That deployment experience is what this initiative is built on.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "12",
     title: "Platform capabilities",
     approved:
       "Product verification, certification visibility, seller onboarding, product-level traceability and trusted commerce.",
-    detail: TBC,
-    status: TBC,
+    detail:
+      "These five capabilities are the platform. Everything else described above exists to make them work in a live marketplace.",
+    status: "Approved structure, detail pending",
   },
   {
     no: "13",
     title: "Current status",
     approved: "",
-    detail: TBC,
-    status: TBC,
+    detail:
+      "The only status vocabulary published for this initiative is the actual one. Nothing is listed as live, in development or launched until it is, and no coverage, user or outcome figure is published until it can be evidenced.",
+    status: "Status pending",
   },
   {
     no: "14",
     title: "Future direction",
-    approved: "",
-    detail: TBC,
-    status: TBC,
+    approved:
+      "Deepen verification coverage before widening the catalogue.",
+    detail:
+      "The credible direction is extending verification across more categories and more producer regions, and supporting institutional sourcing, rather than adding listings faster than the verification behind them can be maintained.",
+    status: "Approved structure, detail pending",
   },
 ] as const;
 
@@ -562,6 +672,12 @@ export type Project = {
   slug: string;
   name: string;
   category: string;
+  /*
+    Which of the six technology domains this deployment proves. Lets a domain
+    card show shipped work instead of restating its own summary as a bullet
+    list (antislop R-11: never repeat the same claim twice).
+  */
+  domains: readonly string[];
   flagship: boolean;
   confirmed: boolean;
   overview: string;
@@ -583,6 +699,7 @@ export const projects: Project[] = [
     slug: "next360-organic",
     name: "Next360 Organic Marketplace",
     category: "Digital Commerce",
+    domains: ["Digital Commerce"],
     flagship: true,
     confirmed: true,
     overview:
@@ -606,6 +723,7 @@ export const projects: Project[] = [
     slug: "mallaram-digital-village",
     name: "Mallaram Digital Village",
     category: "Digital Governance & Rural Technology",
+    domains: ["Digital Infrastructure"],
     flagship: false,
     confirmed: true,
     overview:
@@ -633,6 +751,7 @@ export const projects: Project[] = [
     slug: "orr-intelligent-cctv",
     name: "ORR Intelligent CCTV & Vehicle Monitoring",
     category: "Government Infrastructure & Computer Vision",
+    domains: ["AI & Computer Vision", "Digital Infrastructure"],
     flagship: false,
     confirmed: true,
     overview:
@@ -657,6 +776,7 @@ export const projects: Project[] = [
     slug: "facial-recognition-attendance",
     name: "Facial Recognition Attendance System",
     category: "AI & Business Process Automation",
+    domains: ["AI & Computer Vision", "Business Technology"],
     flagship: false,
     confirmed: true,
     overview:
@@ -680,6 +800,7 @@ export const projects: Project[] = [
     slug: "hospital-management-system",
     name: "Hospital Management System",
     category: "Business Technology",
+    domains: ["Business Technology"],
     flagship: false,
     confirmed: true,
     overview:
@@ -695,6 +816,7 @@ export const projects: Project[] = [
     slug: "ev-charging-solutions",
     name: "EV Charging Solutions",
     category: "Digital Infrastructure",
+    domains: ["Digital Infrastructure"],
     flagship: false,
     confirmed: true,
     overview:
@@ -715,6 +837,7 @@ export const projects: Project[] = [
     slug: "digital-screens-transit-advertising",
     name: "Digital Screens & Transit Advertising",
     category: "Digital Advertising",
+    domains: ["Digital Advertising"],
     flagship: false,
     confirmed: true,
     overview:
@@ -734,6 +857,7 @@ export const projects: Project[] = [
     slug: "crm-ivr-systems",
     name: "CRM & IVR Systems",
     category: "Business Technology",
+    domains: ["Business Technology"],
     flagship: false,
     confirmed: true,
     overview:
@@ -757,6 +881,7 @@ export const projects: Project[] = [
     slug: "vanyabhumi",
     name: "Vanyabhumi",
     category: "Digital Commerce",
+    domains: ["Digital Commerce"],
     flagship: false,
     confirmed: true,
     overview:
@@ -778,6 +903,7 @@ export const projects: Project[] = [
     slug: "ayurvena",
     name: "Ayurvena",
     category: "Business Technology",
+    domains: ["Business Technology"],
     flagship: false,
     confirmed: true,
     overview:

@@ -20,7 +20,7 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        label="Section 13"
+        label="Contact"
         title={
           <>
             LET&apos;S
