@@ -163,30 +163,32 @@ function MemberCard({
   const hasRole = Boolean(member.role);
 
   return (
-    <li className="flex h-full items-center gap-4 rounded-[1.75rem] border border-gray-200 bg-white p-5">
-      {showImage ? (
-        <Image
-          src={member.photo}
-          alt={`Portrait of ${member.name}`}
-          width={56}
-          height={56}
-          className="h-14 w-14 shrink-0 rounded-full object-cover"
-          onError={() => setFailed(true)}
-        />
-      ) : (
-        <span
-          aria-hidden="true"
-          className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-brand-accent text-base font-black text-black"
-        >
-          {initials(member.name)}
-        </span>
-      )}
-      <div className="min-w-0 flex-1">
+    <li className="flex h-full flex-col rounded-[1.75rem] border border-gray-200 bg-white overflow-hidden">
+      <div className="relative w-full h-64 bg-gray-100">
+        {showImage ? (
+          <Image
+            src={member.photo}
+            alt={`Portrait of ${member.name}`}
+            fill
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            className="object-cover object-top"
+            onError={() => setFailed(true)}
+          />
+        ) : (
+          <span
+            aria-hidden="true"
+            className="flex h-full w-full items-center justify-center bg-brand-accent text-3xl font-black text-black"
+          >
+            {initials(member.name)}
+          </span>
+        )}
+      </div>
+      <div className="flex flex-col p-5">
         <p className="text-base font-bold leading-tight text-neutral-900">
           {member.name}
         </p>
         {hasRole ? (
-          <p className="text-[13px] font-medium text-neutral-500">
+          <p className="mt-1 text-[13px] font-medium text-neutral-500">
             {[member.role, member.org].filter(Boolean).join(" · ")}
           </p>
         ) : null}
@@ -194,7 +196,7 @@ function MemberCard({
           href={member.profile}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-1.5 inline-flex items-center gap-1 text-[13px] font-bold text-neutral-900 underline-offset-4 hover:underline"
+          className="mt-2 inline-flex items-center gap-1 text-[13px] font-bold text-neutral-900 underline-offset-4 hover:underline"
         >
           LinkedIn
           <span aria-hidden="true">&#8599;</span>

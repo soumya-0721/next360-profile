@@ -424,14 +424,14 @@ export const leadership = [
     name: "Samhith Reddy Sangam",
     role: "Chief Executive Officer",
     bio: "",
-    photo: "/public/images/leadership/samhith-reddy-sangam.jpg",
+    photo: "/images/leadership/ceo-samhith.jpg",
     profile: "",
   },
   {
     name: "Shivaganesh Gajavelli",
     role: "Co-Founder & Chief Technology Officer",
     bio: "",
-    photo: "/public/images/leadership/shivaganesh-gajavelli.jpg",
+    photo: "/images/leadership/cto-shivaganesh.jpg",
     profile: "",
   },
 ];
