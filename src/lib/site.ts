@@ -271,15 +271,6 @@ export const executionModel = [
 */
 export const mentorship = [
   {
-    name: "Santanu Bhattacherjee",
-    title: "AI Trust & Safety Technical Program Manager",
-    org: "Google",
-    note: "Mentors Next360 on responsible technology, AI governance and innovation. Works across Trust & Safety, Search and Gemini, and is an IICA Certified Independent Director and IIM Lucknow alumnus.",
-    photo: "/images/mentors/mentor-santanu.jpg",
-    profile:
-      "https://www.linkedin.com/in/connect-to-santanu?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
-  },
-  {
     name: "Vinod Reddy Vembuluru",
     title: "Founder & CEO, INTOWN",
     org: "INTOWN",
@@ -294,14 +285,6 @@ export const mentorship = [
     org: "Google Gemini",
     note: "Project Manager. Guiding Next360 on technology, product development and industry practices.",
     photo: "/images/mentors/mentor-google.jpg",
-    profile: "",
-  },
-  {
-    name: "T-Hub",
-    title: "Startup Mentor",
-    org: "T-Hub",
-    note: "Startup ecosystem mentorship, guidance and industry connections through T-Hub, one of India's prominent startup incubation and innovation ecosystems.",
-    photo: "/images/mentors/mentor-thub.jpg",
     profile: "",
   },
 ];

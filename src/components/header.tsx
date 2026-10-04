@@ -59,13 +59,11 @@ export function Header() {
           className="flex items-center gap-2"
           aria-label="Next360 home"
         >
-          <i
-            className="fa-solid fa-layer-group text-brand-green text-xl md:text-2xl"
-            aria-hidden="true"
+          <img
+            src="/next360-logo.jpg"
+            alt="Next360 logo"
+            className="h-8 w-auto md:h-9"
           />
-          <span className="text-lg font-bold tracking-tighter text-black md:text-xl">
-            NEXT360
-          </span>
         </Link>
 
         {/* Links */}
