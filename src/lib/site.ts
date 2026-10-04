@@ -378,22 +378,6 @@ export const panelMembers = [
     photo: "/images/mentors/member-saiteja.jpg",
     profile: "",
   },
-  {
-    name: "Vinod",
-    role: "Founder & CEO",
-    org: "INTOWN",
-    note: "Founder and CEO of INTOWN with experience in sales, marketing, business development and strategic growth initiatives.",
-    photo: "/images/mentors/member-vinod.jpg",
-    profile: "",
-  },
-  {
-    name: "Santhan",
-    role: "Project Manager",
-    org: "INTOWN",
-    note: "Project Manager contributing to project planning, execution and delivery across strategic initiatives.",
-    photo: "/images/mentors/member-santhan.jpg",
-    profile: "",
-  },
 ];
 
 /* Industry and academic collaboration, owner-supplied 2026-10-01. */

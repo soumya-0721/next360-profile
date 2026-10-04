@@ -417,7 +417,10 @@ export default function HomePage() {
               </div>
               <div className="flex flex-col p-7">
                 <h3 className="text-xl font-bold leading-tight">Samhith Reddy Sangam</h3>
-                <p className="mt-1 text-sm font-semibold text-brand-green-ink">Chief Executive Officer</p>
+                <p className="mt-1 text-sm font-semibold text-brand-green-ink">Founder & Chief Executive Officer</p>
+                <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                  Founder and Chief Executive Officer at Next360, leading the company’s vision, strategy, and business growth. Drives Next360’s mission to build technology-driven solutions across organic commerce, healthcare, and emerging sectors. Focused on innovation, sustainability, and creating meaningful opportunities that contribute to a stronger, future-ready Bharat.
+                </p>
               </div>
             </div>
             <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white overflow-hidden">
