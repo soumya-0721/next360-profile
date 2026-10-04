@@ -406,13 +406,13 @@ export default function HomePage() {
         <Reveal delay={180}>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white overflow-hidden">
-              <div className="relative w-full h-80 bg-gray-100">
+              <div className="relative w-full h-64 bg-gray-100 flex items-center justify-center">
                 <Image
                   src="/images/leadership/ceo-samhith.jpg"
                   alt="Portrait of Samhith Reddy Sangam"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top"
+                  width={320}
+                  height={400}
+                  className="h-full w-auto object-contain"
                 />
               </div>
               <div className="flex flex-col p-7">
@@ -424,13 +424,13 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white overflow-hidden">
-              <div className="relative w-full h-80 bg-gray-100">
+              <div className="relative w-full h-64 bg-gray-100 flex items-center justify-center">
                 <Image
                   src="/images/leadership/cto-shivaganesh.jpg"
                   alt="Portrait of Shivaganesh Gajavelli"
-                  fill
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="object-cover object-top"
+                  width={320}
+                  height={400}
+                  className="h-full w-auto object-contain"
                 />
               </div>
               <div className="flex flex-col p-7">
