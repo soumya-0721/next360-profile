@@ -161,6 +161,10 @@ function MemberCard({
   const [failed, setFailed] = useState(false);
   const showImage = Boolean(member.photo) && !failed;
   const hasRole = Boolean(member.role);
+  // Optional per-member crop override (see panelMembers.photoPosition); the
+  // inline style wins over the object-top class default.
+  const photoPosition =
+    "photoPosition" in member ? member.photoPosition : undefined;
 
   return (
     <li className="flex h-full flex-col rounded-[1.75rem] border border-gray-200 bg-white overflow-hidden">
@@ -172,6 +176,7 @@ function MemberCard({
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
             className="object-cover object-top"
+            style={photoPosition ? { objectPosition: photoPosition } : undefined}
             onError={() => setFailed(true)}
           />
         ) : (

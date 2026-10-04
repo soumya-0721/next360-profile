@@ -285,7 +285,8 @@ export const mentorship = [
     org: "Google Gemini",
     note: "Project Manager. Guiding Next360 on technology, product development and industry practices.",
     photo: "/images/mentors/mentor-google.jpg",
-    profile: "",
+    profile:
+      "https://www.linkedin.com/in/connect-to-santanu?utm_source=share_via&utm_content=profile&utm_medium=member_ios",
   },
 ];
 
@@ -328,6 +329,8 @@ export const collaboratorNote =
   card simply omits the link rather than guessing one.
 
   photo: drop a portrait at the path below to replace the initials.
+  photoPosition (optional): overrides the default "top" crop when a portrait
+  needs its window shifted, e.g. "50% 20%" slides the picture up 20%.
   Expected files:
     /public/images/mentors/member-santanu.jpg
     /public/images/mentors/member-indrasena.jpg
@@ -342,6 +345,7 @@ export const panelMembers = [
     org: "Bell Integration",
     note: "Specialises in AI, data solutions, Generative AI, AIOps and ERP applications across Workday, PeopleSoft and ITIL. Joined Bell Integration in 2023.",
     photo: "/images/mentors/member-indrasena.jpg",
+    photoPosition: "50% 20%",
     profile:
       "https://www.linkedin.com/in/indrasena-r-s-a1478a87?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   },

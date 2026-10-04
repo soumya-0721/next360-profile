@@ -60,7 +60,7 @@ export function Header() {
           aria-label="Next360 home"
         >
           <img
-            src="/next360-logo.jpg"
+            src="/images/next360-navlogo.png"
             alt="Next360 logo"
             className="h-8 w-auto md:h-9"
           />
