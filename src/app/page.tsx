@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import {
+  InstitutionalPartnerLogos,
   MentorPanels,
   PartnerLogos,
 } from "@/components/mentors";
@@ -19,6 +20,7 @@ import {
   capabilityLists,
   collaboratorNote,
   company,
+  institutionalPartnerNote,
   organicDomains,
   photos,
   projects,
@@ -402,7 +404,7 @@ export default function HomePage() {
           </div>
         </Reveal>
 
-        {/* Leadership - CEO and CTO */}
+        {/* Leadership - CEO */}
         <Reveal delay={180}>
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white overflow-hidden">
@@ -420,24 +422,6 @@ export default function HomePage() {
                 <p className="mt-1 text-sm font-semibold text-brand-green-ink">Founder & Chief Executive Officer</p>
                 <p className="mt-3 text-sm leading-relaxed text-gray-600">
                   Founder and Chief Executive Officer at Next360, leading the company’s vision, strategy, and business growth. Drives Next360’s mission to build technology-driven solutions across organic commerce, healthcare, and emerging sectors. Focused on innovation, sustainability, and creating meaningful opportunities that contribute to a stronger, future-ready Bharat.
-                </p>
-              </div>
-            </div>
-            <div className="flex h-full flex-col rounded-[2rem] border border-gray-200 bg-white overflow-hidden">
-              <div className="relative w-full h-48 bg-white flex items-center justify-center px-6 pt-6">
-                <Image
-                  src="/images/leadership/cto-shivaganesh.jpg"
-                  alt="Portrait of Shivaganesh Gajavelli"
-                  width={240}
-                  height={300}
-                  className="h-40 w-auto object-contain rounded-full ring-2 ring-gray-100"
-                />
-              </div>
-              <div className="flex flex-col px-6 pb-6 pt-2">
-                <h3 className="text-xl font-bold leading-tight">Shivaganesh Gajavelli</h3>
-                <p className="mt-1 text-sm font-semibold text-brand-green-ink">Co-Founder & Chief Technology Officer</p>
-                <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                  Co-Founder and Chief Technology Officer at Next360, leading the technology vision, product development, and engineering team. Drives the team from idea to execution, building practical digital solutions across commerce, healthcare, business, and infrastructure. Focused on building strong teams, scalable technology, and products that solve real-world problems and support Next360’s long-term growth.
                 </p>
               </div>
             </div>
@@ -459,6 +443,24 @@ export default function HomePage() {
             </p>
             <PartnerLogos />
           </div>
+        </Reveal>
+      </section>
+
+      {/* 7c: institutional partners. Logos only, directly below Strategic
+          Collaborators so the navbar link can jump straight to it. */}
+      <section
+        id="institutional-partner"
+        className="mx-auto max-w-7xl px-6 pb-20"
+      >
+        <Reveal>
+          <SectionLabel label="Institutional Partners" />
+          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-gray-600">
+            {institutionalPartnerNote}
+          </p>
+        </Reveal>
+
+        <Reveal delay={60}>
+          <InstitutionalPartnerLogos />
         </Reveal>
       </section>
 

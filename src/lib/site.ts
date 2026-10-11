@@ -20,6 +20,7 @@ export const primaryNav: NavItem[] = [
   { label: "IT Services", href: "/it-services" },
   { label: "Next360 Organic", href: "/organic" },
   { label: "Projects", href: "/projects" },
+  { label: "Institutional Partner", href: "/#institutional-partner" },
 ];
 
 /* The lime pill inside the link row. */
@@ -41,6 +42,7 @@ export const allRoutes: NavItem[] = [
   { label: "IT Services", href: "/it-services" },
   { label: "Next360 Organic", href: "/organic" },
   { label: "Projects", href: "/projects" },
+  { label: "Institutional Partner", href: "/#institutional-partner" },
   { label: "SLICK Technologies", href: "/slick" },
   { label: "Capabilities", href: "/capabilities" },
   { label: "Contact", href: "/contact" },
@@ -321,6 +323,69 @@ export const collaboratorNote =
   "The partner network enables Next360 to combine internal product development capabilities with specialized expertise across technology, AI, sales, marketing and implementation.";
 
 /*
+  Institutional Partner section, owner-requested 2026-10-10. The section shows
+  partner logos only. No institutional partnership is named or marked until it
+  is confirmed, so every entry starts empty and renders as a clean logo
+  placeholder (antislop R-17/R-24). To publish a partner, drop the mark in
+  /public/images/institutional-partners/ and set name + logo below, e.g.:
+    { name: "Partner name", logo: "/images/institutional-partners/partner-01.png" }
+*/
+export type InstitutionalPartner = {
+  name: string;
+  logo: string;
+  /* Detail-page route. Empty keeps the tile a non-clickable placeholder. */
+  href?: string;
+};
+
+export const institutionalPartnerNote =
+  "Institutions, government bodies, academic organisations and enterprises that Next360 collaborates with.";
+
+export const institutionalPartners: InstitutionalPartner[] = [
+  {
+    name: "SR University",
+    logo: "/images/institutional-partners/sr-university.jpg",
+    href: "/institutional-partners/sr-university",
+  },
+  { name: "", logo: "" },
+  { name: "", logo: "" },
+  { name: "", logo: "" },
+];
+
+/*
+  SR University institutional partner profile, owner-requested 2026-10-10.
+
+  Published only where verified:
+  - Name, sector and location: SR University, a private university in
+    Warangal, Telangana (official site https://sru.edu.in, verified
+    2026-10-10).
+  - The detailed partnership description and the LinkedIn post URL have not
+    been supplied, so both stay empty and the page renders honest placeholders
+    instead of invented activity, dates or metrics (antislop R-17/R-24).
+  Fill `about` and `linkedinPost` to publish each block.
+*/
+export const srUniversity = {
+  slug: "sr-university",
+  name: "SR University",
+  category: "Academic Institution · Institutional Partner",
+  logo: "/images/institutional-partners/sr-university.jpg",
+  /* Short, verified overview. No activity or outcome is claimed. */
+  overview:
+    "SR University is a private university in Warangal, Telangana, published by Next360 as an institutional partner for academic and industry collaboration.",
+  location: "Warangal, Telangana, India",
+  website: "https://sru.edu.in",
+  /* Detailed partnership description. Empty -> formatted placeholder. */
+  about: "",
+  /*
+    Official LinkedIn post permalink for the announcement. Empty -> the
+    section renders a placeholder with a config hint. When set, the section
+    shows the post; set `linkedinEmbed` as well to render LinkedIn's iframe
+    embed, otherwise a clean preview with a View on LinkedIn link is shown.
+  */
+  linkedinPost: "",
+  linkedinEmbed: "",
+};
+
+/*
   Panel members. Roles taken from the owner's LinkedIn extracts, 2026-10-03.
 
   Tenure is published only where the source showed it, and always scoped to
@@ -403,8 +468,7 @@ export const academicCollaboration = [
   expects a portrait at the exact path below; the card falls back to
   initials until the file lands.
   Expected files:
-    /public/images/leadership/samhith-reddy-sangam.jpg
-    /public/images/leadership/shivaganesh-gajavelli.jpg
+    /public/images/leadership/ceo-samhith.jpg
 */
 export const leadership = [
   {
@@ -412,13 +476,6 @@ export const leadership = [
     role: "Chief Executive Officer",
     bio: "",
     photo: "/images/leadership/ceo-samhith.jpg",
-    profile: "",
-  },
-  {
-    name: "Shivaganesh Gajavelli",
-    role: "Co-Founder & Chief Technology Officer",
-    bio: "",
-    photo: "/images/leadership/cto-shivaganesh.jpg",
     profile: "",
   },
 ];

@@ -163,6 +163,18 @@ export const pageSeo: Record<string, PageSeo> = {
       "EV charging solutions",
     ],
   },
+  "/institutional-partners/sr-university": {
+    label: "Institutional Partner",
+    title: "SR University: Academic Partner",
+    description:
+      "Next360's institutional partnership with SR University, a private university in Warangal, Telangana. Read the partner profile and official update. Learn more.",
+    keywords: [
+      "SR University",
+      "Next360 institutional partner",
+      "academic partnership India",
+      "Warangal university",
+    ],
+  },
   "/slick": {
     label: "Sub-company",
     title: "SLICK Technologies by Next360",
@@ -201,6 +213,7 @@ export const SEO_ROUTES = [
   "/it-services",
   "/organic",
   "/projects",
+  "/institutional-partners/sr-university",
   "/slick",
   "/capabilities",
   "/contact",

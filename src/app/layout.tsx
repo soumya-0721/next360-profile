@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 
 import { Footer } from "@/components/footer";
 import { Header } from "@/components/header";
+import { ScrollToHash } from "@/components/scroll-to-hash";
 import { WhatsAppFab } from "@/components/whatsapp-fab";
 import { SEO_KEYWORDS_CONFIRMED, SITE_URL, organizationJsonLd } from "@/lib/seo";
 import { company } from "@/lib/site";
@@ -89,6 +90,7 @@ export default function RootLayout({
           Skip to content
         </a>
         <Header />
+        <ScrollToHash />
         <main id="main">{children}</main>
         <Footer />
         <WhatsAppFab />

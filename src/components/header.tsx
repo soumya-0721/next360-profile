@@ -67,7 +67,7 @@ export function Header() {
         </Link>
 
         {/* Links */}
-        <div className="hidden items-center gap-8 text-sm font-medium text-gray-600 md:flex">
+        <div className="hidden items-center gap-5 text-sm font-medium text-gray-600 lg:flex xl:gap-8">
           {primaryNav.map((item) => (
             <Link
               key={item.href}
@@ -90,7 +90,7 @@ export function Header() {
         </div>
 
         {/* Right cluster, where the reference keeps its account actions */}
-        <div className="hidden items-center gap-4 md:flex">
+        <div className="hidden items-center gap-4 lg:flex">
           <Link
             href={navAsideText.href}
             className="text-sm font-semibold transition hover:text-brand-green-ink"
@@ -111,7 +111,7 @@ export function Header() {
           onClick={() => setOpen((v) => !v)}
           aria-expanded={open}
           aria-controls="mobile-menu"
-          className="text-gray-800 focus:outline-none md:hidden"
+          className="text-gray-800 focus:outline-none lg:hidden"
         >
           <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
           <i
@@ -131,7 +131,7 @@ export function Header() {
       <div
         id="mobile-menu"
         aria-hidden={!open}
-        className={`absolute left-4 right-4 top-20 z-40 rounded-2xl bg-white p-6 shadow-xl transition-all duration-300 ease-smooth md:hidden ${
+        className={`absolute left-4 right-4 top-20 z-40 rounded-2xl bg-white p-6 shadow-xl transition-all duration-300 ease-smooth lg:hidden ${
           open
             ? "visible translate-y-0 scale-100 opacity-100"
             : "invisible pointer-events-none -translate-y-2 scale-[0.97] opacity-0"
@@ -142,6 +142,7 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
+              onClick={() => setOpen(false)}
               aria-current={isActive(item.href) ? "page" : undefined}
               style={{ transitionDelay: open ? `${80 + i * 40}ms` : "0ms" }}
               className={`transition-all duration-300 ease-gentle ${
