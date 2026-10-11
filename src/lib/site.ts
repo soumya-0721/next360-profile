@@ -373,16 +373,19 @@ export const srUniversity = {
     "SR University is a private university in Warangal, Telangana, published by Next360 as an institutional partner for academic and industry collaboration.",
   location: "Warangal, Telangana, India",
   website: "https://sru.edu.in",
-  /* Detailed partnership description. Empty -> formatted placeholder. */
-  about: "",
+  /* Image shown beside the description in the About block. */
+  image: "/images/sru.jpg",
+  /* Confirmed partnership description, owner-supplied 2026-10-11. */
+  about:
+    "Next360 Organic Products Private Limited, Hyderabad, and SR University, Warangal, Telangana, are establishing a collaborative framework to promote academic engagement, research, professional development, and industry\u2013academia cooperation.\n\nThe MoU outlines opportunities for student internships, faculty development, joint research, curriculum development, academic events, and knowledge sharing, subject to mutual agreement.",
   /*
-    Official LinkedIn post permalink for the announcement. Empty -> the
-    section renders a placeholder with a config hint. When set, the section
-    shows the post; set `linkedinEmbed` as well to render LinkedIn's iframe
-    embed, otherwise a clean preview with a View on LinkedIn link is shown.
+    Official LinkedIn post permalink for the MoU announcement. The section
+    renders LinkedIn's iframe embed below, with a View on LinkedIn fallback
+    link kept visible in case the embed is blocked.
   */
-  linkedinPost: "",
-  linkedinEmbed: "",
+  linkedinPost: "https://lnkd.in/p/dQCChZuB",
+  linkedinEmbed:
+    "https://www.linkedin.com/embed/feed/update/urn:li:share:7513980930588540928",
 };
 
 /*
@@ -429,6 +432,15 @@ export const panelMembers = [
     note: "Founder with nine-plus years of experience and a keynote speaker on sustainability. Stanford Graduate School of Business, focused on sustainability strategy, behaviour change and citizen engagement.",
     photo: "/images/mentors/member-saiteja.jpg",
     profile: "",
+  },
+  {
+    name: "Kallepelli Meghashank",
+    role: "Azure Cloud Engineer",
+    org: "Accenture Solutions Private Limited",
+    note: "",
+    photo: "/images/mentors/member-meghashank.png",
+    profile:
+      "https://www.linkedin.com/in/kallepelli-meghashank?utm_source=share_via&utm_content=profile&utm_medium=member_android",
   },
 ];
 

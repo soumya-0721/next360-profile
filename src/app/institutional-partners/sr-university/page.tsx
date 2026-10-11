@@ -112,27 +112,37 @@ export default function SrUniversityPartnerPage() {
           <SectionTitle className="mt-2">
             Next360 &times; SR University.
           </SectionTitle>
-          {srUniversity.about ? (
-            <p className="mt-4 whitespace-pre-line text-[15px] leading-relaxed text-gray-600">
-              {srUniversity.about}
-            </p>
-          ) : (
-            <div className="mt-6 rounded-[2rem] border border-dashed border-gray-300 bg-gray-50 p-8">
-              <p className="text-sm font-bold text-gray-700">
-                Detailed description pending confirmation
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                The verified partnership description will be published here once
-                confirmed by Next360 and SR University. It will cover the actual
-                collaboration across academic engagement, technology
-                initiatives, industry exposure, internships, training, research
-                and student projects, where supported by evidence. No activity,
-                date, statistic or commitment is published until it can be
-                evidenced.
-              </p>
-            </div>
-          )}
         </Reveal>
+        <div className="mt-6 grid items-center gap-8 md:grid-cols-2">
+          <Reveal>
+            {srUniversity.about ? (
+              <p className="whitespace-pre-line text-[15px] leading-relaxed text-gray-600">
+                {srUniversity.about}
+              </p>
+            ) : (
+              <div className="rounded-[2rem] border border-dashed border-gray-300 bg-gray-50 p-8">
+                <p className="text-sm font-bold text-gray-700">
+                  Detailed description pending confirmation
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                  The verified partnership description will be published here
+                  once confirmed by Next360 and SR University.
+                </p>
+              </div>
+            )}
+          </Reveal>
+          <Reveal delay={80}>
+            <div className="relative aspect-video w-full overflow-hidden rounded-[2rem] border border-gray-200 bg-white">
+              <Image
+                src={srUniversity.image}
+                alt="Next360 and SR University memorandum of understanding"
+                fill
+                sizes="(max-width: 768px) 100vw, 40vw"
+                className="object-contain p-3"
+              />
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* C. LinkedIn Update */}
@@ -143,14 +153,15 @@ export default function SrUniversityPartnerPage() {
             Partnership Announcement.
           </SectionTitle>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-gray-600">
-            The official announcement of the partnership from Next360 or SR
-            University.
+            The official announcement from Next360 India about the Memorandum of
+            Understanding signed with SR University, Warangal.
           </p>
         </Reveal>
         <Reveal delay={80} className="mt-6">
           <LinkedInUpdate
             postUrl={srUniversity.linkedinPost}
             embedUrl={srUniversity.linkedinEmbed}
+            logo={srUniversity.logo}
           />
         </Reveal>
       </section>
